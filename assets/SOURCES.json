@@ -1,0 +1,34 @@
+{
+  "photos": [
+    {
+      "path": "assets/photos/basketball1.png",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.12.0/samples/data/basketball1.png",
+      "sha256": "ba06f6701f7260998b430c39b6557f775497e6ce7b1a74f0b7ea6af371bf54a6",
+      "version": "OpenCV 4.12.0",
+      "changes": "unchanged"
+    },
+    {
+      "path": "assets/photos/chicky.png",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.12.0/samples/data/chicky_512.png",
+      "sha256": "45130d812992129ce81e6075984a127303c732c0871f8ba993724a8a4e91cbb4",
+      "version": "OpenCV 4.12.0",
+      "changes": "unchanged; chicky.png is a filename alias"
+    },
+    {
+      "path": "assets/photos/chicky_512.png",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.12.0/samples/data/chicky_512.png",
+      "sha256": "45130d812992129ce81e6075984a127303c732c0871f8ba993724a8a4e91cbb4",
+      "version": "OpenCV 4.12.0",
+      "changes": "unchanged"
+    },
+    {
+      "path": "assets/photos/fruits.jpg",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.12.0/samples/data/fruits.jpg",
+      "sha256": "9c031d80a1c52da5eca790db896baffec6a7e52bf786cdb7bbfca5c7f880e6a1",
+      "version": "OpenCV 4.12.0",
+      "changes": "unchanged"
+    }
+  ],
+  "dataset": "scikit-learn load_digits / UCI Optical Recognition of Handwritten Digits",
+  "synthetic": "Generated visibly in each Notebook; no student or patient private data"
+}

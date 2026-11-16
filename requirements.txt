@@ -1,0 +1,12 @@
+# Python 3.11；本课程 CPU 实测版本。先按 README 安装对应 CPU/GPU 的 torch。
+numpy==2.2.6
+matplotlib==3.10.8
+opencv-python==4.12.0.88
+Pillow==11.1.0
+scipy==1.16.3
+scikit-learn==1.9.0
+jupyterlab==4.6.6
+nbclient==0.11.0
+nbformat==5.11.1
+ipykernel==7.4.0
+torch==2.5.1

@@ -1,0 +1,12 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+*.pyc
+upstream/
+docs/feishu-backup/
+docs/feishu-revision/
+docs/private/
+dist/
+outputs/
+verification/
+.jupyter/
