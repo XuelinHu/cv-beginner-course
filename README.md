@@ -121,12 +121,14 @@ conda run --no-capture-output -n pyg python scripts/run_notebooks.py --device cp
 python scripts/package_course.py
 ```
 
-GitHub 仓库：[XuelinHu/cv-beginner-course](https://github.com/XuelinHu/cv-beginner-course)。当前为私有仓库，需获得访问权限后克隆：
+GitHub 仓库：[XuelinHu/cv-beginner-course](https://github.com/XuelinHu/cv-beginner-course)。Gitee 镜像：[XuelinHu/cv-beginner-course](https://gitee.com/XuelinHu/cv-beginner-course)。两个仓库当前均为私有，需获得访问权限后克隆：
 
 ```bash
 git clone https://github.com/XuelinHu/cv-beginner-course.git
 cd cv-beginner-course
 ```
+
+国内也可使用 `git clone https://gitee.com/XuelinHu/cv-beginner-course.git`。
 
 也可以直接分发学生压缩包。第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
