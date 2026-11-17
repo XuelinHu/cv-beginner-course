@@ -154,7 +154,8 @@ PyTorch称作Conv2d的运算实现互相关，不额外翻转核。
 
 最后的32×8×8特征分成两条支路：
 全局平均池化→32维向量→6类logits；
-展平→2048维→64维→4个框参数。排序后得到合法的归一化xyxy。
+展平→2048维→LayerNorm→64维→4个框参数。排序后得到合法的归一化xyxy。
+LayerNorm稳定定位分支的输入尺度，避免特征幅值增长使末端Sigmoid饱和、框退化成整张图。
 """)
 code("""
 class IndustrialCNN(nn.Module):
@@ -165,6 +166,7 @@ class IndustrialCNN(nn.Module):
         self.conv3=nn.Conv2d(16,32,3,padding=1)
         self.pool=nn.MaxPool2d(2)
         self.classifier=nn.Linear(32,6)
+        self.box_norm=nn.LayerNorm(32*8*8)
         self.box_hidden=nn.Linear(32*8*8,64)
         self.box_out=nn.Linear(64,4)
     def trace(self,x):
@@ -177,7 +179,8 @@ class IndustrialCNN(nn.Module):
         t['vector']=t['gap'].flatten(1)
         t['logits']=self.classifier(t['vector'])
         t['flat']=x.flatten(1)
-        t['box_vector']=F.relu(self.box_hidden(t['flat']))
+        t['box_normalized']=self.box_norm(t['flat'])
+        t['box_vector']=F.relu(self.box_hidden(t['box_normalized']))
         raw=self.box_out(t['box_vector']).sigmoid()
         t['boxes']=torch.cat([torch.minimum(raw[:,:2],raw[:,2:]),torch.maximum(raw[:,:2],raw[:,2:])],1)
         return t
@@ -396,6 +399,8 @@ md("""
 现在才读取测试预测。IoU比较预测联合框与真值联合框，
 不等于每个缺陷实例的检测mAP。分类正确但框错误，或框覆盖了缺陷但类别错误，都是可能的。
 保留全部样本ID、损失、预测框与结果CSV，不只展示最好看的例子。
+同时列出“无论输入什么，都框住整张图”的IoU对照：本数据不少联合框很大，
+仅看平均IoU会掩盖退化预测。这个短时训练的小模型不保证定位优于该对照。
 """)
 code("""
 all_logits=[];all_boxes=[]
@@ -409,7 +414,10 @@ intersection=np.prod(np.maximum(0,hi-lo),1)
 areas=np.prod(pred_boxes[:,2:]-pred_boxes[:,:2],1)+np.prod(test_b[:,2:]-test_b[:,:2],1)-intersection
 ious=intersection/np.maximum(areas,1e-8)
 accuracy=float(accuracy_score(test_y,pred));macro_f1=float(f1_score(test_y,pred,average='macro'))
+whole_image_iou=np.prod(test_b[:,2:]-test_b[:,:2],1)
+assert float(pred_boxes.std(0).max())>.01, '定位输出退化：需检查梯度、Sigmoid饱和与框损失'
 metrics={'accuracy':accuracy,'macro_f1':macro_f1,'union_box_mean_iou':float(ious.mean()),
+         'whole_image_baseline_mean_iou':float(whole_image_iou.mean()),
          'test_images':len(test_y),'best_validation_epoch':best_epoch,
          'classification_ce':float(F.cross_entropy(scores,torch.from_numpy(test_y))),
          'box_smooth_l1':float(F.smooth_l1_loss(boxes,torch.from_numpy(test_b))),
