@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--pattern', default='*.ipynb', help='如 0[0-4]*.ipynb；默认为全部19课')
+    parser.add_argument('--pattern', default='*.ipynb', help='如 0[0-4]*.ipynb；默认为全部22课')
     parser.add_argument('--device', default='cpu', choices=['cpu', 'auto', 'cuda', 'mps'])
     parser.add_argument('--timeout', default=300, type=int, help='单个单元格的超时秒数')
     parser.add_argument('--report', default='execution.json')

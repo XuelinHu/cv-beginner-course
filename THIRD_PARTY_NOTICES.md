@@ -7,3 +7,7 @@
 - digits：通过 scikit-learn 自带 `load_digits` 读取 UCI 手写数字数据；数据来源与引用见 [官方数据文档](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html)。数据未单独改名发布为原创。
 - NumPy、OpenCV、PyTorch、Matplotlib、SciPy、scikit-learn、Jupyter 作为依赖安装，其许可证按各上游发行包执行。
 - 其余合成输入由各 Notebook 中的可见代码生成；没有使用学生个人信息或患者资料。
+
+- 19课NEU-DET由东北大学Song Kechen等作者发布。固定镜像只作为下载通道；原始图像与标注不纳入本项目MIT授权，未把整个数据包重新发布到仓库/学生包。
+- reference/opencv_zoo中的四个原版Python包装文件、README与LICENSE来自OpenCV Zoo固定提交48b10fa505aeb51fbd127fc60a5c660040e823b7，Apache-2.0，保留各模型LICENSE。部署权重按原始URL下载并核验SHA256。
+- COCO-WholeBody照片/人工标注小样例来自MMPose固定版本；照片许可ID和来源保留于原始JSON。Google测试照片和TensorFlow.js视频按原始来源的许可使用，原始数据缓存不随仓库/学生包分发。Notebook中的教学可视化注明来源，原作者权利不变。

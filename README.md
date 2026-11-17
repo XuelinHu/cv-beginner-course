@@ -1,6 +1,6 @@
 # 计算机视觉入门：从像素矩阵到可运行模型
 
-给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。19 课各自包含输入图片、矩阵或张量、处理步骤、输出可视化、评价与练习。默认不需要显卡、不下载模型权重、不使用 API 密钥；安装依赖后全部基础实验可离线运行。
+给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。22 课各自包含输入图片、矩阵或张量、处理步骤、输出可视化、评价与练习。不需要显卡或API密钥。00–18基础实验安装依赖后可离线运行；19–21真实工业、手势和人体课程首次联网下载数据/模型，之后复用本地缓存。
 
 ## 第一次运行（推荐：Python 3.11 + CPU）
 
@@ -71,10 +71,21 @@ python3.11 -m venv .venv
 |16|[姿态估计](notebooks/16_pose.ipynb)|受控关节图 → 训练热图网络 → 解码关键点 → PCK|
 |17|[CT预处理与分割入门](notebooks/17_ct_preprocessing.ipynb)|合成HU切片、窗宽窗位、掩膜与Dice；可选真实DICOM入口|
 |18|[水下图像实验](notebooks/18_underwater.ipynb)|真实照片模拟水下退化、白平衡/CLAHE、对照与指标局限|
+|19|[真实工业缺陷分类与ROI](notebooks/19_industrial_defect_classification.ipynb)|NEU-DET钢材图、VOC标注、分组划分、三层全部通道、卷积/池化/向量/双头损失、独立测试|
+|20|[真实手指手势识别](notebooks/20_hand_gesture_real.ipynb)|21点标注、自动手掌ROI、CNN内部输出、672维向量到63坐标、误差与真实视频逐帧推理|
+|21|[真实人体姿态与动作](notebooks/21_human_pose_real.ipynb)|人工17点与模型33点映射、CNN算子、768维向量到195输出、热图/mask支路、下蹲视频逐帧关节角度|
 
 完整目录对应关系和各课前置知识见 [课程地图](docs/CURRICULUM.md)。
 
-2026-11-16 已在全新 Python 3.11 环境逐课执行通过，保留 77 幅实际输出图；详情见 [运行验收记录](docs/VERIFICATION.md)。
+00–18于2026-11-16在全新Python 3.11环境逐课执行，19–21于2026-11-17在同一独立环境执行；22课均保留实际图文输出。详情见 [运行验收记录](docs/VERIFICATION.md)。
+
+## 真实场景三课怎么学
+
+按19→20→21顺序。19课第一次下载固定版本NEU-DET镜像（约122MB），解析1800张图和XML。相同像素图分组后划为训练、验证、测试；归一化参数只从训练集拟合。8→16→32个通道逐层展示，手算卷积/最大池化并与PyTorch比对；32维分类向量与保留位置的框分支分别计算损失。数据中有多类共现，按文件名主类别做单标签分类，保留所有原框，定位主类别联合框；不是完整多目标检测器。
+
+20–21首次下载约26MB预训练模型和少量真实标注照片/视频，使用已有OpenCV，无额外依赖。手部演示21点和几何手势规则；人体演示33主体点、6辅助点与下蹲时间序列。这两课查看固定预训练网络的真实内部张量，不声称重新训练大模型，也不把小样例误差称为独立基准成绩。图表、逐帧坐标、算子清单与指标保存到outputs，原始下载缓存位于data。
+
+下载地址与模型SHA256固定，原始照片/视频保留各自权利；项目MIT不改变第三方数据许可。学生包保留已运行图文，原始数据与模型按需下载。详情见[来源记录](docs/SOURCES.md)。
 
 ## CPU 与 GPU
 
@@ -124,11 +135,11 @@ python scripts/package_course.py
 GitHub 仓库：[XuelinHu/cv-beginner-course](https://github.com/XuelinHu/cv-beginner-course)。Gitee 镜像：[XuelinHu/cv-beginner-course](https://gitee.com/XuelinHu/cv-beginner-course)。两个仓库均已公开，学生可以直接克隆：
 
 ```bash
-git clone https://github.com/XuelinHu/cv-beginner-course.git
+git clone https://gitee.com/XuelinHu/cv-beginner-course.git
 cd cv-beginner-course
 ```
 
-国内也可使用 `git clone https://gitee.com/XuelinHu/cv-beginner-course.git`。
+也可使用 `git clone https://github.com/XuelinHu/cv-beginner-course.git`。
 
 也可以直接分发学生压缩包。第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 

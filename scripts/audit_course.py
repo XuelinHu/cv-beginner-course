@@ -15,7 +15,7 @@ def main():
     rows, errors = [], []
     imports = set()
     paths = sorted((ROOT/'notebooks').glob('*.ipynb'))
-    if len(paths) != 19: errors.append(f'应有19课，实际{len(paths)}')
+    if len(paths) != 22: errors.append(f'应有22课，实际{len(paths)}')
     for p in paths:
         nb = nbformat.read(p, as_version=4)
         nbformat.validate(nb)

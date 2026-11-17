@@ -1,0 +1,80 @@
+[
+  {
+    "path": "data/models/handpose_estimation_mediapipe_2023feb.onnx",
+    "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/handpose_estimation_mediapipe/handpose_estimation_mediapipe_2023feb.onnx",
+    "sha256": "db0898ae717b76b075d9bf563af315b29562e11f8df5027a1ef07b02bef6d81c"
+  },
+  {
+    "path": "data/models/palm_detection_mediapipe_2023feb.onnx",
+    "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/palm_detection_mediapipe/palm_detection_mediapipe_2023feb.onnx",
+    "sha256": "78ff51c38496b7fc8b8ebdb6cc8c1abb02fa6c38427c6848254cdaba57fcce7c"
+  },
+  {
+    "path": "data/models/pose_estimation_mediapipe_2023mar.onnx",
+    "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/pose_estimation_mediapipe/pose_estimation_mediapipe_2023mar.onnx",
+    "sha256": "9d89c599319a18fb7d2e28451a883476164543182bafca5f09eb2cf767ed2f3f"
+  },
+  {
+    "path": "data/models/person_detection_mediapipe_2023mar.onnx",
+    "url": "https://media.githubusercontent.com/media/opencv/opencv_zoo/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/person_detection_mediapipe/person_detection_mediapipe_2023mar.onnx",
+    "sha256": "47fd5599d6fa17608f03e0eb0ae230baa6e597d7e8a2c8199fe00abea55a701f"
+  },
+  {
+    "path": "data/keypoints/000000000785.jpg",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/759b39c13fea6ba094afc1fa932f51dc1b11cbf9/tests/data/coco/000000000785.jpg",
+    "sha256": "83981537a7baeafbeb9c8cb67b3484dc26433f574b3685d021fa537e277e4726"
+  },
+  {
+    "path": "data/keypoints/000000040083.jpg",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/759b39c13fea6ba094afc1fa932f51dc1b11cbf9/tests/data/coco/000000040083.jpg",
+    "sha256": "89b9c3771c9428e0e25134cde9bc0a962318a477d267ef47f8e1872526207da7"
+  },
+  {
+    "path": "data/keypoints/000000196141.jpg",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/759b39c13fea6ba094afc1fa932f51dc1b11cbf9/tests/data/coco/000000196141.jpg",
+    "sha256": "8e66c7dd60fe81fb0eae99314eb5e6c191e53f739760fa36ae7ba56f10115814"
+  },
+  {
+    "path": "data/keypoints/000000197388.jpg",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/759b39c13fea6ba094afc1fa932f51dc1b11cbf9/tests/data/coco/000000197388.jpg",
+    "sha256": "dec0fbb931cb609bf481e56b89cd2fbbab79839f22832c3bbe69a8fae2769cdd"
+  },
+  {
+    "path": "data/keypoints/test_coco_wholebody.json",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/759b39c13fea6ba094afc1fa932f51dc1b11cbf9/tests/data/coco/test_coco_wholebody.json",
+    "sha256": "239b250a0407ab4e6a0d20574995bb92b1bcf5dd768f59045d8982554d958b84"
+  },
+  {
+    "path": "data/keypoints/thumb_up.jpg",
+    "url": "https://storage.googleapis.com/mediapipe-assets/thumb_up.jpg",
+    "sha256": "5d673c081ab13b8a1812269ff57047066f9c33c07db5f4178089e8cb3fdc0291"
+  },
+  {
+    "path": "data/keypoints/pointing_up.jpg",
+    "url": "https://storage.googleapis.com/mediapipe-assets/pointing_up.jpg",
+    "sha256": "ecf8ca2611d08fa25948a4fc10710af9120e88243a54da6356bacea17ff3e36e"
+  },
+  {
+    "path": "data/keypoints/woman_hands.jpg",
+    "url": "https://storage.googleapis.com/mediapipe-tasks/hand_landmarker/woman_hands.jpg",
+    "sha256": "70cbeb38e198c9862202e0979c21a99b40ca980d3e7b250176c85b1636a40f12"
+  },
+  {
+    "path": "data/keypoints/hand_clip.mp4",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/c731b9ebbd6f4c9e8bf99b0df76bbdbf9c25b07f/hand-pose-detection/test_data/asl_hand.25fps.mp4",
+    "sha256": "57c10fb1eb76639edf43e9675213dcc495c51851e32a3592cacaa9437be4f37e"
+  },
+  {
+    "path": "data/keypoints/pose_clip.mp4",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/c731b9ebbd6f4c9e8bf99b0df76bbdbf9c25b07f/pose-detection/test_data/pose_squats.mp4",
+    "sha256": "ea9151e447b301985d5d65666551ef863b369a2e0f3a71ddd58abef2e722f96a"
+  },
+  {
+    "dataset": "NEU-DET",
+    "official": "https://faculty.neu.edu.cn/songkechen/zh_CN/zdylm/263270/list/index.htm",
+    "mirror": "https://codeload.github.com/allanwong/NEU-DET-Steel-Surface-Defect-Detection/zip/351bee21b56bbf97a1e1d18262bceb202eb7ef41",
+    "mirror_commit": "351bee21b56bbf97a1e1d18262bceb202eb7ef41",
+    "archive_sha256": "e0f360b032342399d18ca14328e9eff905e7ac18cb5b1bc91f1fd20512e267d6",
+    "split_protocol": "course seed42, stratified by class, grouped by exact decoded pixel hash, 70/15/15"
+  }
+]

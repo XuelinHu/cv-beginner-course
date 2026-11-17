@@ -4,7 +4,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ['README.md', 'requirements.txt', 'requirements-optional.txt', 'LICENSE',
-         'THIRD_PARTY_NOTICES.md', 'course_utils.py', '.gitignore', '.gitattributes']
+         'THIRD_PARTY_NOTICES.md', 'course_utils.py', 'industrial_data.py', 'keypoint_utils.py', '.gitignore', '.gitattributes']
 FOLDERS = ['notebooks', 'assets', 'reference']
 DOCS = ['CURRICULUM.md', 'SOURCES.md', 'VERIFICATION.md']
 SCRIPTS = ['run_notebooks.py', 'package_course.py', 'audit_course.py']
