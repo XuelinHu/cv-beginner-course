@@ -16,7 +16,7 @@ def canonical(value) -> str:
 
 
 def main() -> None:
-    root = ROOT / "courses/industrial-vision-lab/data/legacy_import/database"
+    root = ROOT / "courses/industrial-vision-lab/data/dataset/records/legacy_sqlite"
     connection = connect()
     tables_checked = rows_checked = 0
     try:

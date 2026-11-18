@@ -8,7 +8,7 @@ import nbformat as nbf
 
 from create_notebooks import ROOT, SETUP, code, md
 
-SLUG = "32_live_blade_busbar_inspection"
+SLUG = "27_live_blade_busbar_inspection"
 TITLE = "32｜用当前相机实拍走完汇流排检测"
 
 

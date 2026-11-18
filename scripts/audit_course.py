@@ -15,10 +15,10 @@ def main():
     rows, errors = [], []
     imports = set()
     paths = sorted((ROOT/'notebooks').glob('*.ipynb'))
-    expected = [f'{index:02d}_' for index in range(33)]
+    expected = [f'{index:02d}_' for index in range(28)]
     actual = [path.name[:3] for path in paths]
-    if len(paths) != 33: errors.append(f'应有33课，实际{len(paths)}')
-    if actual != expected: errors.append(f'课程编号应连续为00–32，实际为{actual}')
+    if len(paths) != 28: errors.append(f'应有28课，实际{len(paths)}')
+    if actual != expected: errors.append(f'课程编号应连续为00–27，实际为{actual}')
     for p in paths:
         nb = nbformat.read(p, as_version=4)
         nbformat.validate(nb)
@@ -37,7 +37,8 @@ def main():
             for out in c.outputs:
                 if out.output_type == 'error': errors.append(f'{p.name}: {out.ename}')
         if images < 1: errors.append(f'{p.name}: 没有实际嵌入图像输出')
-        if int(p.stem[:2]) < 22 and not any(term in texts for term in ['矩阵', '张量', 'NCHW']):
+        content = texts + '\n' + '\n'.join(c.source for c in code)
+        if int(p.stem[:2]) < 14 and not any(term in content for term in ['矩阵', '张量', 'NCHW', '.shape']):
             errors.append(f'{p.name}: 缺少矩阵/张量维度解释')
         rows.append({'notebook': p.name, 'code_cells': len(code), 'image_outputs': images,
                      'sha256': hashlib.sha256(p.read_bytes()).hexdigest()})

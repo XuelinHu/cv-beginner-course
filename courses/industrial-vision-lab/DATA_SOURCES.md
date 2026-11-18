@@ -11,6 +11,15 @@
 
 精确下载 URL、固定提交、原始档案成员路径、文件大小和 SHA256 在 [sources/source_manifest.json](sources/source_manifest.json)。`data/cache` 不提交完整数据集。`data/public` 只保存上述小样本及原标注；默认离线运行，不需要账号、令牌或摄像头。
 
+## 本次新增的真实公开输入
+
+`data/public/augmentation/` 中的六张图片由用户提供，记录了视频课件截图中的增强方法，包含原视频水印、字幕和批注。其著作权和二次分发许可尚未核实；课程代码重新实现其中的方法，截图只用于所提供课程项目内的学习引用。对外再分发前应核实权利人和许可。
+
+|素材|来源|用途与权利说明|
+|---|---|---|
+|`data/public/medical/CT_small.dcm`|[pydicom 官方 DICOM 示例](https://pydicom.github.io/pydicom/stable/auto_examples/input_output/plot_read_dicom.html)，固定文件来自 [pydicom 测试数据](https://github.com/pydicom/pydicom/blob/7cda352958d0d9193b19dfa417b126dcf3286943/src/pydicom/data/test_files/CT_small.dcm)|真实 DICOM 像素数据，用于 HU 和窗宽窗位教学，不用于诊断。SHA256：`3dd31e5cc835b3f2cdd46c9da1982f59251e78518fefa8163d914631c66437d6`。|
+|`data/public/underwater/euvp_test_input_1.jpg`、`euvp_test_reference_1.jpg`|[EUVP 官方数据集页](https://irvlab.cs.umn.edu/resources/euvp-dataset)；图像按固定版本从 [FUnIE-GAN 测试样例](https://github.com/xahidbuffon/FUnIE-GAN/tree/8f934c834c94e007b00866186b9ee624dc2b7b69/data/test)获取|真实水下输入及配对参考，不是生成图，也不是逐像素物理真值。图片权利遵循 EUVP 原数据集条款；FUnIE-GAN 代码许可不自动覆盖图片。SHA256 分别为 `8eae88a6349db0fed9d25355aaa9a93afb0dbc4cc6c97e7a318c4713bbc41870`、`94653e5b9046b25115441865b651b291cec28fcf7ab51316a828b2214b94d2c4`。|
+
 ## 派生图的标记
 
 课程中的低亮度、噪声、旋转、模糊和阈值图，均是公开实拍照片的**派生演示**，不是新增独立照片，也不是实测灯光或光谱实验。第 08 课的七格条纹是明确标注的**合成规则示意**，仅验证软件逻辑，不替代任何真实焊格标签。图片裁切、叠框、灰度、阈值等修改会在课中注明。

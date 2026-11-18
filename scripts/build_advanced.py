@@ -51,7 +51,7 @@ def write(name, cells):
     (OUT / name).write_text(json.dumps(nb, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
-write("09_retrieval.ipynb", [
+write("10_retrieval.ipynb", [
 md(r'''# 09 图像检索：图片怎样变成向量，再找到相似图片
 
 学习目标：观察 RGB/HSV 数值，亲手提取向量、计算余弦相似度、返回 Top-K 并评价。
@@ -87,7 +87,7 @@ query = make_picture(0, colors[0], 999)
 fig, axs = plt.subplots(1, 4, figsize=(10, 3))
 for ax, im, title in zip(axs, [query, gallery[0], gallery[12], gallery[24]], ["独立查询", "图库：圆", "图库：方形", "图库：三角"]):
     ax.imshow(im); ax.set_title(title); ax.axis("off")
-save_figure("09_retrieval_inputs")
+save_figure("10_retrieval_inputs")
 print("输入形状:", query.shape, "类型:", query.dtype)
 print("查询中心 3×3 RGB 矩阵:\n", query[30:33, 30:33])
 '''),
@@ -128,7 +128,7 @@ fig, axs = plt.subplots(1, 6, figsize=(14, 3))
 axs[0].imshow(query); axs[0].set_title("查询"); axs[0].axis("off")
 for ax, idx in zip(axs[1:], top):
     ax.imshow(gallery[idx]); ax.set_title(f"ID {idx}\n相似度 {scores[idx]:.3f}"); ax.axis("off")
-save_figure("09_retrieval_results")
+save_figure("10_retrieval_results")
 '''),
 md('''## 4. 评价：在九个独立查询上计算 Precision@K 与 Recall@K
 
@@ -159,7 +159,7 @@ if photo_path.exists():
     fig, axs = plt.subplots(1, len(candidates), figsize=(14, 3))
     for i, ax in enumerate(axs):
         ax.imshow(candidates[i]); ax.set_title(f"{i}: {photo_scores[i]:.3f}"); ax.axis("off")
-    save_figure("09_retrieval_photo")
+    save_figure("10_retrieval_photo")
 else:
     print("未找到可选真实照片；请运行项目的素材准备步骤。")
 '''),

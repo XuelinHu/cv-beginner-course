@@ -1,0 +1,10 @@
+/* Keep each notebook surface at 150% without compounding nested code styles. */
+.jp-RenderedHTMLCommon {
+  font-size: 150% !important;
+}
+
+.jp-Notebook .jp-InputArea-editor .cm-content,
+.jp-Notebook .jp-OutputArea-output pre {
+  font-size: 150% !important;
+  line-height: 1.5 !important;
+}

@@ -1,5 +1,11 @@
 # 运行验收记录
 
+## 2026-11-19 课程重排复核
+
+当前课程为 00–27 共 28 篇。Windows 本机 `pyg` 环境逐篇执行：00–25 和 27 通过；26 最初因合并时遗漏数据库初始化而失败，恢复初始化并明确合成七格与公开焊缝图片的边界后，独立重跑通过。`scripts/audit_course.py` 检查编号、Notebook 结构、已执行单元、错误输出、嵌入图与本地链接，结果为 28 篇、163 幅嵌入图、无错误。工业专题单元测试 5 项通过。
+
+以上不代表局域网服务器已逐课运行，也不代表焊接算法已达到产线精度。以下旧版记录使用当时的编号和素材，仅供追溯。
+
 00–18验收日期2026-11-16；19–21新增真实场景验收日期2026-11-17。
 
 ## 实测环境与结果
@@ -22,23 +28,23 @@
 |02_filtering_edges.ipynb|5|4|3.95|通过|
 |03_morphology_contours.ipynb|6|5|4.04|通过|
 |04_datasets_evaluation.ipynb|5|3|11.15|通过|
-|05_classical_models.ipynb|6|5|14.33|通过|
-|06_classification.ipynb|6|5|16.47|通过|
-|07_detection.ipynb|6|4|7.63|通过|
-|08_segmentation.ipynb|6|4|6.67|通过|
-|09_retrieval.ipynb|6|3|3.13|通过|
+|06_classical_models.ipynb|6|5|14.33|通过|
+|07_classification.ipynb|6|5|16.47|通过|
+|08_detection.ipynb|6|4|7.63|通过|
+|09_segmentation.ipynb|6|4|6.67|通过|
+|10_retrieval.ipynb|6|3|3.13|通过|
 |10_generation.ipynb|6|5|7.16|通过|
 |11_captioning.ipynb|5|3|7.49|通过|
 |12_super_resolution.ipynb|5|4|5.71|通过|
 |13_depth.ipynb|5|3|3.25|通过|
-|14_optical_flow.ipynb|5|4|3.32|通过|
-|15_reconstruction.ipynb|6|2|3.1|通过|
-|16_pose.ipynb|5|4|11.03|通过|
-|17_ct_preprocessing.ipynb|7|4|3.42|通过|
-|18_underwater.ipynb|7|6|3.91|通过|
-|19_industrial_defect_classification.ipynb|13|25|20.68|通过|
-|20_hand_gesture_real.ipynb|15|17|14.47|通过|
-|21_human_pose_real.ipynb|14|17|14.72|通过|
+|11_optical_flow.ipynb|5|4|3.32|通过|
+|12_reconstruction.ipynb|6|2|3.1|通过|
+|13_pose.ipynb|5|4|11.03|通过|
+|14_ct_preprocessing.ipynb|7|4|3.42|通过|
+|15_underwater.ipynb|7|6|3.91|通过|
+|18_industrial_defect_classification.ipynb|13|25|20.68|通过|
+|16_hand_gesture_real.ipynb|15|17|14.47|通过|
+|17_human_pose_real.ipynb|14|17|14.72|通过|
 
 ## 复核方法
 

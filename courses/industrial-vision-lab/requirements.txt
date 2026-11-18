@@ -7,4 +7,5 @@ nbconvert>=7.10,<8
 ipykernel>=6,<8
 jupyter-client>=8,<9
 jupyterlab>=4,<5
+pydicom>=3,<4
 

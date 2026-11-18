@@ -1,6 +1,6 @@
 # 计算机视觉入门：从像素矩阵到可运行模型
 
-给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。00–32 共 33 节，统一放在一个 `notebooks/` 目录、使用一套 Python 环境和一条 Jupyter 启动入口。课程包含基础视觉、模型实验，以及刀片电池汇流排焊接外观检测专题；专题从暗光成像开始，逐步定位汇流排、镍片与七格，并覆盖拒判、证据记录和当前实拍重跑。
+给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。00–27 共 28 节，统一放在一个 `notebooks/` 目录、使用一套 Python 环境和一条 Jupyter 启动入口。课程包含基础视觉、模型实验，以及刀片电池汇流排焊接外观检测专题；专题从暗光成像开始，逐步定位汇流排、镍片与七格，并覆盖拒判、证据记录和当前实拍重跑。
 
 ## 第一次运行（推荐：Python 3.11 + CPU）
 
@@ -14,7 +14,8 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m jupyterlab notebooks
+$env:JUPYTER_CONFIG_DIR = (Join-Path (Get-Location) ".jupyter")
+.\.venv\Scripts\python.exe -m jupyterlab --custom-css notebooks
 ```
 
 其他学生请将 `cd` 后的路径改为自己的解压位置。无需激活 PowerShell 脚本，也无需管理员权限。若 `py` 不存在，安装 Python 3.11，或使用下方 Conda 方式。
@@ -23,7 +24,8 @@ py -3.11 -m venv .venv
 
 ```powershell
 cd D:\workspace\cv\cv-beginner-course
-conda run -n pyg python -m jupyterlab notebooks
+$env:JUPYTER_CONFIG_DIR = (Join-Path (Get-Location) ".jupyter")
+conda run -n pyg python -m jupyterlab --custom-css notebooks
 ```
 
 新建独立 Conda 环境：
@@ -32,7 +34,8 @@ conda run -n pyg python -m jupyterlab notebooks
 conda create -n cv-course python=3.11 pip -y
 conda run -n cv-course python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 conda run -n cv-course python -m pip install -r requirements.txt
-conda run -n cv-course python -m jupyterlab notebooks
+$env:JUPYTER_CONFIG_DIR = (Join-Path (Get-Location) ".jupyter")
+conda run -n cv-course python -m jupyterlab --custom-css notebooks
 ```
 
 Linux：
@@ -43,51 +46,40 @@ python3.11 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python -m jupyterlab notebooks
+export JUPYTER_CONFIG_DIR="$PWD/.jupyter"
+.venv/bin/python -m jupyterlab --custom-css notebooks
 ```
+
+Notebook 正文、代码和文本输出字号为 JupyterLab 默认值的 150%；该样式由项目内 `.jupyter/custom/custom.css` 提供。
 
 打开 `00_start_here.ipynb`，选择 Python 内核，点击“运行 → 运行所有单元格”。每一课可重新启动内核后独立运行，无需先执行前一课。Notebook 已保留实际运行的图文输出，即使暂未装环境也能阅读。
 
 ## 学习顺序
 
+课程共 28 篇，按 00–27 顺序学习。第 05 课专门讲解附件中的数据增强方法。
+
 |课|Notebook|实际实验|
 |---|---|---|
-|00|[环境与第一张图](notebooks/00_start_here.ipynb)|真实照片 → 8×8矩阵 → NCHW张量 → 输出|
-|01|[像素、颜色、采样与量化](notebooks/01_pixels_matrices.ipynb)|手算矩阵；采样、量化、灰度、HSV、直方图|
-|02|[滤波、卷积和边缘](notebooks/02_filtering_edges.ipynb)|核乘加、噪声、4种滤波、PSNR、Sobel/Canny|
-|03|[形态学、轮廓和特征](notebooks/03_morphology_contours.ipynb)|零件掩膜清理、像素测量、真实照片ORB匹配|
-|04|[数据集与评价](notebooks/04_datasets_evaluation.ipynb)|真实digits数据、训练/验证/测试、混淆矩阵、分布变化|
-|05|[传统视觉模型](notebooks/05_classical_models.ipynb)|HOG+SVM；Haar/HOG检测与真实照片|
-|06|[图像分类](notebooks/06_classification.ipynb)|真实手写数字上训练小CNN并独立测试|
-|07|[目标检测](notebooks/07_detection.ipynb)|受控形状图像上学习类别和边界框；IoU与失败例|
-|08|[图像分割](notebooks/08_segmentation.ipynb)|受控标注上训练微型U-Net；mask、叠加图、Dice/IoU|
-|09|[图像检索](notebooks/09_retrieval.ipynb)|特征向量、余弦相似度、Top-K排序、Recall@K|
-|10|[扩散图像生成](notebooks/10_generation.ipynb)|真实digits上训练微型DDPM；前向加噪与反向采样|
-|11|[图像描述](notebooks/11_captioning.ipynb)|受控图形图像 → CNN编码 → GRU逐词生成|
-|12|[超分辨率](notebooks/12_super_resolution.ipynb)|低清/高清配对、小残差CNN、双三次基线、PSNR|
-|13|[双目深度](notebooks/13_depth.ipynb)|已知几何生成双目图 → 匹配视差 → 米制深度|
-|14|[光流](notebooks/14_optical_flow.ipynb)|相邻帧、Farneback向量场、图像重映射、EPE|
-|15|[三维重建](notebooks/15_reconstruction.ipynb)|投影矩阵 → 两相机观测 → 三角化 → 三维点云|
-|16|[姿态估计](notebooks/16_pose.ipynb)|受控关节图 → 训练热图网络 → 解码关键点 → PCK|
-|17|[CT预处理与分割入门](notebooks/17_ct_preprocessing.ipynb)|合成HU切片、窗宽窗位、掩膜与Dice；可选真实DICOM入口|
-|18|[水下图像实验](notebooks/18_underwater.ipynb)|真实照片模拟水下退化、白平衡/CLAHE、对照与指标局限|
-|19|[真实工业缺陷分类与ROI](notebooks/19_industrial_defect_classification.ipynb)|NEU-DET钢材图、VOC标注、分组划分、三层全部通道、卷积/池化/向量/双头损失、独立测试|
-|20|[真实手指手势识别](notebooks/20_hand_gesture_real.ipynb)|21点标注、自动手掌ROI、CNN内部输出、672维向量到63坐标、误差与真实视频逐帧推理|
-|21|[真实人体姿态与动作](notebooks/21_human_pose_real.ipynb)|人工17点与模型33点映射、CNN算子、768维向量到195输出、热图/mask支路、下蹲视频逐帧关节角度|
+|00–04|基础与数据评价|像素、滤波、轮廓、数据集划分与指标|
+|05|[数据增强与工业视觉鲁棒性](notebooks/05_data_augmentation.ipynb)|附件课件原图、几何/颜色/噪声、Mosaic、MixUp、Copy-Paste、Random Erasing、YOLO 参数|
+|06–10|模型基础|HOG/SVM、CNN、检测、分割、橘子特征检索|
+|11–15|几何与真实公开图像|光流、三维、姿态坐标、真实 DICOM CT、EUVP 水下图像|
+|16–19|真实视觉与工业案例|手势、人体姿态、钢铁缺陷、焊缝/汇流排标签边界|
+|20–27|刀片电池视觉专题|暗光、增强、二值、纹理、计数、质量门控、七格规则、实时汇流排流程|
 
 完整目录对应关系和各课前置知识见 [课程地图](docs/CURRICULUM.md)。
 
 ## 刀片电池焊接检测专题
 
-第 22–32 节是与前 22 节连续编号的专题内容，不另设第二套 Notebook、依赖或启动方式。专题源材料、许可清单、工具模块和现场样例保存在 `courses/industrial-vision-lab/`；完整私有数据集和运行数据库位于局域网服务器，不会推送到公开 Git 仓库。学生离线学习仍可使用课程中的公开样例及执行输出。
+第 19–27 节是与前 18 节连续编号的专题内容，不另设第二套 Notebook、依赖或启动方式。专题源材料、许可清单、工具模块和现场样例保存在 `courses/industrial-vision-lab/`；完整私有数据集和运行数据库位于局域网服务器，不会推送到公开 Git 仓库。学生离线学习仍可使用课程中的公开样例及执行输出。
 
-00–21 的既有验收记录见 [运行验收记录](docs/VERIFICATION.md)；统一后的 00–32 需在局域网服务器重新逐课执行并生成独立验收报告。
+此前的运行验收记录见 [运行验收记录](docs/VERIFICATION.md)；统一后的 00–27 需在局域网服务器重新逐课执行并生成独立验收报告。
 
 ## 真实场景三课怎么学
 
-按19→20→21顺序。19课第一次下载固定版本NEU-DET镜像（约122MB），解析1800张图和XML。相同像素图分组后划为训练、验证、测试；归一化参数只从训练集拟合。8→16→32个通道逐层展示，手算卷积/最大池化并与PyTorch比对；32维分类向量与保留位置的框分支分别计算损失。数据中有多类共现，按文件名主类别做单标签分类，保留所有原框，定位主类别联合框；不是完整多目标检测器。
+按16→17→18顺序。18课第一次下载固定版本NEU-DET镜像（约122MB），解析1800张图和XML。相同像素图分组后划为训练、验证、测试；归一化参数只从训练集拟合。8→16→32个通道逐层展示，手算卷积/最大池化并与PyTorch比对；32维分类向量与保留位置的框分支分别计算损失。数据中有多类共现，按文件名主类别做单标签分类，保留所有原框，定位主类别联合框；不是完整多目标检测器。
 
-20–21首次下载约26MB预训练模型和少量真实标注照片/视频，使用已有OpenCV，无额外依赖。手部演示21点和几何手势规则；人体演示33主体点、6辅助点与下蹲时间序列。这两课查看固定预训练网络的真实内部张量，不声称重新训练大模型，也不把小样例误差称为独立基准成绩。图表、逐帧坐标、算子清单与指标保存到outputs，原始下载缓存位于data。
+16–17首次下载约26MB预训练模型和少量真实标注照片/视频，使用已有OpenCV，无额外依赖。手部演示21点和几何手势规则；人体演示33主体点、6辅助点与下蹲时间序列。这两课查看固定预训练网络的真实内部张量，不声称重新训练大模型，也不把小样例误差称为独立基准成绩。图表、逐帧坐标、算子清单与指标保存到outputs，原始下载缓存位于data。
 
 下载地址与模型SHA256固定，原始照片/视频保留各自权利；项目MIT不改变第三方数据许可。学生包保留已运行图文，原始数据与模型按需下载。详情见[来源记录](docs/SOURCES.md)。
 
@@ -119,10 +111,10 @@ conda run --no-capture-output -n pyg python scripts/run_notebooks.py --device cp
 ## 这些实验能说明什么
 
 - **真实输入**：OpenCV 样例照片及内置手写数字；来源、版本和 SHA256 在 assets/SOURCES.json。
-- **受控实验**：检测、分割、描述、姿态采用带已知标签的合成图，便于初学者理解端到端训练；不能把高分当成真实场景效果。
-- **小型模型**：DDPM、CNN、GRU 等确实训练并推理；数据规模与模型容量面向课堂，不等同于大规模预训练系统。
+- **受控实验**：检测、分割和姿态采用带已知标签的受控教学数据；真实汇流排图仅作场景示例，不作为未经标注的训练真值。
+- **小型模型**：CNN 等模型面向课堂，数据规模与模型容量不等同于大规模预训练系统。
 - **几何实验**：深度与三维使用明确的相机、纹理和观测假设；三角化不是一个包含自动匹配、SfM、MVS、网格纹理的完整工程系统。
-- **CT与水下**：合成HU、模拟退化均有显式说明，避免将演示输出解释为临床结果或真实水下恢复真值。
+- **CT与水下**：CT 使用随项目提供的公开 DICOM 原图；水下使用公开 EUVP 实拍输入与配对参考，不以水果或生成图代替真实数据。
 
 每课都有修改数据、阈值或参数的练习。先理解矩阵和输入输出，再尝试真实自有数据。
 

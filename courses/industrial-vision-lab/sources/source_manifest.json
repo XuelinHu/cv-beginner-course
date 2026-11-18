@@ -372,6 +372,43 @@
       "defective": true,
       "source_group": "kos03",
       "split": "teaching only; no train/val/test accuracy claim"
+    },
+    {
+      "id": "pydicom_ct_small",
+      "url": "https://github.com/pydicom/pydicom/blob/7cda352958d0d9193b19dfa417b126dcf3286943/src/pydicom/data/test_files/CT_small.dcm",
+      "file": "data/public/medical/CT_small.dcm",
+      "kind": "medical DICOM image",
+      "dataset": "pydicom public test file",
+      "homepage": "https://pydicom.github.io/pydicom/stable/auto_examples/input_output/plot_read_dicom.html",
+      "license": "pydicom repository license; verify source distribution terms",
+      "revision": "7cda352958d0d9193b19dfa417b126dcf3286943",
+      "sha256": "3dd31e5cc835b3f2cdd46c9da1982f59251e78518fefa8163d914631c66437d6",
+      "bytes": 39206,
+      "purpose": "real DICOM pixel/HU/windowing teaching only; not for diagnosis"
+    },
+    {
+      "id": "euvp_test_input_1",
+      "url": "https://github.com/xahidbuffon/FUnIE-GAN/blob/8f934c834c94e007b00866186b9ee624dc2b7b69/data/test/A/1.jpg",
+      "file": "data/public/underwater/euvp_test_input_1.jpg",
+      "kind": "underwater input image",
+      "dataset": "EUVP paired test subset",
+      "homepage": "https://irvlab.cs.umn.edu/resources/euvp-dataset",
+      "license": "Follow EUVP dataset terms; do not infer image rights from repository code license",
+      "revision": "8f934c834c94e007b00866186b9ee624dc2b7b69",
+      "sha256": "8eae88a6349db0fed9d25355aaa9a93afb0dbc4cc6c97e7a318c4713bbc41870",
+      "bytes": 15642
+    },
+    {
+      "id": "euvp_test_reference_1",
+      "url": "https://github.com/xahidbuffon/FUnIE-GAN/blob/8f934c834c94e007b00866186b9ee624dc2b7b69/data/test/GTr_A/1.jpg",
+      "file": "data/public/underwater/euvp_test_reference_1.jpg",
+      "kind": "paired underwater reference image",
+      "dataset": "EUVP paired test subset",
+      "homepage": "https://irvlab.cs.umn.edu/resources/euvp-dataset",
+      "license": "Follow EUVP dataset terms; do not infer image rights from repository code license",
+      "revision": "8f934c834c94e007b00866186b9ee624dc2b7b69",
+      "sha256": "94653e5b9046b25115441865b651b291cec28fcf7ab51316a828b2214b94d2c4",
+      "bytes": 19199
     }
   ]
 }

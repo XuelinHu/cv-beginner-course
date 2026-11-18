@@ -1,2 +1,2 @@
-# 仅在 17 课需要读取自己的真实 DICOM 文件时安装。
-pydicom>=3.0,<4
+# Base DICOM reading is included in requirements.txt.
+# Install additional pixel codecs only if your own compressed DICOM requires them.

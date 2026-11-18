@@ -51,7 +51,7 @@ def write(name, cells):
     (OUT / name).write_text(json.dumps(notebook, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
-write("05_classical_models.ipynb", [
+write("06_classical_models.ipynb", [
 md(r'''
 # 05 传统视觉：HOG + SVM 与 Haar 级联
 
@@ -178,7 +178,7 @@ md(r'''
 来源：[OpenCV HOGDescriptor](https://docs.opencv.org/4.x/d5/d33/structcv_1_1HOGDescriptor.html)、[OpenCV 级联检测教程](https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html)、[scikit-learn digits](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html)。数据与照片许可见项目 `THIRD_PARTY.md`。
 ''')])
 
-write("06_classification.ipynb", [
+write("07_classification.ipynb", [
 md(r'''
 # 06 图像分类：真实手写数字与小型 CNN
 
@@ -207,7 +207,7 @@ print("输入 8×8 浮点矩阵：\n", np.round(X[0,0].numpy(), 2))
 fig, axs = plt.subplots(1, 6, figsize=(12, 3))
 for ax, i in zip(axs, train_ids[:6]):
     ax.imshow(X[i,0], cmap="gray", vmin=0, vmax=1); ax.set_title(str(y[i].item())); ax.axis("off")
-save_figure("06_classification_inputs.png")
+save_figure("07_classification_inputs.png")
 '''),
 md(r'''
 ## 2. 看清每一层的输入输出
@@ -260,7 +260,7 @@ print(f"最佳验证准确率：{best_val:.3f}")
 fig, axs = plt.subplots(1,2,figsize=(10,3))
 axs[0].plot(np.array(history)[:,0]); axs[0].set_title("Train cross entropy"); axs[0].set_xlabel("Epoch")
 axs[1].plot(np.array(history)[:,1]); axs[1].set_title("Validation accuracy"); axs[1].set_ylim(0,1)
-save_figure("06_classification_training.png")
+save_figure("07_classification_training.png")
 '''),
 md(r'''
 ## 4. 单张图片：从像素到类别概率
@@ -282,7 +282,7 @@ fig, axs = plt.subplots(1,4,figsize=(12,3))
 axs[0].imshow(X[test_ids[0],0],cmap="gray"); axs[0].set_title(f"Input, true={y[test_ids[0]].item()}")
 for i, ax in enumerate(axs[1:]): ax.imshow(maps[i],cmap="viridis"); ax.set_title(f"Feature channel {i}")
 for ax in axs: ax.axis("off")
-save_figure("06_classification_features.png")
+save_figure("07_classification_features.png")
 '''),
 md(r'''
 ## 5. 独立测试与错误分析
@@ -295,13 +295,13 @@ test_accuracy = float(np.mean(pred == y[test_ids].numpy()))
 print(f"独立测试准确率：{test_accuracy:.3f}")
 print(classification_report(y[test_ids], pred, zero_division=0))
 ConfusionMatrixDisplay.from_predictions(y[test_ids],pred,cmap="Blues")
-save_figure("06_classification_confusion.png")
+save_figure("07_classification_confusion.png")
 wrong = np.flatnonzero(pred != y[test_ids].numpy())
 selected = wrong[:6] if len(wrong) else np.arange(6)
 fig, axs = plt.subplots(1,len(selected),figsize=(12,3),squeeze=False)
 for ax,k in zip(axs[0],selected):
     ax.imshow(X[test_ids[k],0],cmap="gray"); ax.set_title(f"true={y[test_ids[k]].item()}, pred={pred[k]}"); ax.axis("off")
-save_figure("06_classification_errors.png")
+save_figure("07_classification_errors.png")
 assert test_accuracy > .90, "学习结果异常：检查随机种子、训练轮数与归一化。"
 '''),
 md(r'''
@@ -314,7 +314,7 @@ md(r'''
 来源：[PyTorch 基础训练教程](https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html)、[CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)、[digits 数据](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html)。
 ''')])
 
-write("07_detection.ipynb", [
+write("08_detection.ipynb", [
 md(r'''
 # 07 目标检测：真正学习类别与边界框
 
@@ -363,7 +363,7 @@ fig,axs=plt.subplots(1,4,figsize=(12,3))
 for i,ax in enumerate(axs):
     ax.imshow(train_X[i].permute(1,2,0)); draw_box(ax,train_box[i],"lime","ground truth")
     ax.set_title(names[train_y[i]]); ax.axis("off")
-save_figure("07_detection_inputs.png")
+save_figure("08_detection_inputs.png")
 '''),
 md(r'''
 ## 2. 一个共享特征骨干，两个预测分支
@@ -424,7 +424,7 @@ model.load_state_dict(best_state)
 fig,axs=plt.subplots(1,2,figsize=(10,3))
 axs[0].plot(np.array(history)[:,0]); axs[0].set_title("Training loss")
 axs[1].plot(np.array(history)[:,1]); axs[1].set_title("Validation: correct class and IoU >= 0.5"); axs[1].set_ylim(0,1)
-save_figure("07_detection_training.png")
+save_figure("08_detection_training.png")
 print("最佳验证成功率：",round(best_score,3))
 '''),
 md(r'''
@@ -447,7 +447,7 @@ for i,ax in enumerate(axs.flat):
     ax.imshow(test_X[i].permute(1,2,0)); draw_box(ax,test_box[i],"lime","truth"); draw_box(ax,pred_box[i],"red","prediction")
     ax.set_title(f"{names[pred_class[i]]}, IoU={ious[i]:.2f}"); ax.axis("off")
 axs[0,0].legend(fontsize=7)
-save_figure("07_detection_results.png")
+save_figure("08_detection_results.png")
 assert ious.mean()>.5 and accuracy>.8,"模型未学会基础任务：检查训练与数据。"
 '''),
 md(r'''
@@ -462,7 +462,7 @@ fig,axs=plt.subplots(1,4,figsize=(12,3))
 for ax,k in zip(axs,worst):
     ax.imshow(test_X[k].permute(1,2,0)); draw_box(ax,test_box[k],"lime","truth"); draw_box(ax,pred_box[k],"red","prediction")
     ax.set_title(f"true={names[test_y[k]]}, IoU={ious[k]:.2f}"); ax.axis("off")
-save_figure("07_detection_failures.png")
+save_figure("08_detection_failures.png")
 '''),
 md(r'''
 ## 6. 练习与后续真实数据路线
@@ -473,7 +473,7 @@ md(r'''
 来源：[TorchVision 目标检测微调教程](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)、[Faster R-CNN 原论文](https://arxiv.org/abs/1506.01497)、[COCO 评价实现](https://github.com/cocodataset/cocoapi)。本例为课程原创简化实现，不声称复现上述完整模型。
 ''')])
 
-write("08_segmentation.ipynb", [
+write("09_segmentation.ipynb", [
 md(r'''
 # 08 图像分割：从像素标签到小型 U-Net
 
@@ -515,7 +515,7 @@ fig,axs=plt.subplots(1,2,figsize=(8,3))
 axs[0].imshow(train_X[0].permute(1,2,0)); axs[0].set_title("RGB input")
 axs[1].imshow(train_y[0],cmap="viridis",vmin=0,vmax=2); axs[1].set_title("Mask: background/circle/rectangle")
 for ax in axs: ax.axis("off")
-save_figure("08_segmentation_inputs.png")
+save_figure("09_segmentation_inputs.png")
 '''),
 md(r'''
 ## 2. 一个带跳跃连接的小型 U-Net
@@ -575,7 +575,7 @@ model.load_state_dict(best_state)
 fig,axs=plt.subplots(1,2,figsize=(10,3))
 axs[0].plot(np.array(history)[:,0]); axs[0].set_title("Train pixel cross entropy")
 axs[1].plot(np.array(history)[:,1]); axs[1].set_title("Validation foreground Dice"); axs[1].set_ylim(0,1)
-save_figure("08_segmentation_training.png")
+save_figure("09_segmentation_training.png")
 '''),
 md(r'''
 ## 4. 测试掩膜、叠加图与指标
@@ -599,7 +599,7 @@ for i in range(3):
     axs[i,3].imshow(rgb); axs[i,3].imshow(np.ma.masked_where(pred[i]==0,pred[i]),vmin=0,vmax=2,cmap="viridis",alpha=.5)
 for ax,title in zip(axs[0],["Input","Ground truth","Prediction","Overlay"]): ax.set_title(title)
 for ax in axs.flat: ax.axis("off")
-save_figure("08_segmentation_results.png")
+save_figure("09_segmentation_results.png")
 assert dice[1:].mean()>.85,"前景分割效果异常，请检查训练和标签。"
 '''),
 md(r'''
@@ -618,7 +618,7 @@ axs[0].imshow(shifted[0].permute(1,2,0)); axs[0].set_title("Color-shifted input"
 axs[1].imshow(test_y[0],vmin=0,vmax=2); axs[1].set_title("Unchanged ground truth")
 axs[2].imshow(shifted_pred[0],vmin=0,vmax=2); axs[2].set_title("Prediction under shift")
 for ax in axs: ax.axis("off")
-save_figure("08_segmentation_domain_shift.png")
+save_figure("09_segmentation_domain_shift.png")
 '''),
 md(r'''
 ## 6. 练习与参考

@@ -9,7 +9,10 @@ docs/feishu-revision/
 /dist/
 /outputs/
 /verification/
-/.jupyter/
+/.jupyter/*
+!/.jupyter/custom/
+/.jupyter/custom/*
+!/.jupyter/custom/custom.css
 /data/
 /.env
 /.env.*

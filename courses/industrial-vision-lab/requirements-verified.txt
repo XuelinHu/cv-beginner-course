@@ -9,3 +9,4 @@ nbconvert==7.17.2
 ipykernel==7.4.0
 jupyter-client==8.10.0
 jupyterlab==4.6.6
+pydicom==3.0.2

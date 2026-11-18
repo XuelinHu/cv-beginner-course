@@ -8,7 +8,7 @@ import sqlite3
 
 
 def main() -> None:
-    root = Path(__file__).resolve().parents[1] / "courses/industrial-vision-lab/data/legacy_import/database"
+    root = Path(__file__).resolve().parents[1] / "courses/industrial-vision-lab/data/dataset/records/legacy_sqlite"
     report = {}
     for path in sorted(root.glob("*.sqlite3")):
         connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)

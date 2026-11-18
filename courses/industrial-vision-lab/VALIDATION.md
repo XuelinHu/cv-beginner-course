@@ -1,6 +1,6 @@
 # 统一课程验证
 
-专题 22–32 已合并到主课程唯一的 `notebooks/` 目录。课程整体执行报告和 33 节 Notebook 的结构、图像输出检查见 [统一课程验收记录](../../docs/VERIFICATION.md)。专题单元测试在仓库根目录执行：
+专题 19–27 已合并到主课程唯一的 `notebooks/` 目录。重排后的课程验证状态见 [统一课程验收记录](../../docs/VERIFICATION.md)。专题单元测试在仓库根目录执行：
 
 ```powershell
 conda run --no-capture-output -n pyg python -m unittest discover -s courses/industrial-vision-lab/tests -v
