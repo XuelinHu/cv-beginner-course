@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import hashlib
 import html
 import json
+import os
 from pathlib import Path
 import sqlite3
 from typing import Iterable
@@ -220,6 +221,11 @@ def parameter_gallery(images: list[np.ndarray], labels: list[str], element_id: s
 
 
 def create_database(path: Path) -> sqlite3.Connection:
+    if os.environ.get("COURSE_DB_BACKEND", "sqlite").lower() == "mysql":
+        import sys
+        sys.path.insert(0, str(ROOT.parent.parent))
+        from mysql_course_store import create_database as create_mysql_database
+        return create_mysql_database(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     connection = sqlite3.connect(path)
     connection.execute("PRAGMA foreign_keys=ON")

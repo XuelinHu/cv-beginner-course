@@ -8,7 +8,7 @@ FILES = ['README.md', 'requirements.txt', 'requirements-optional.txt', 'LICENSE'
 FOLDERS = ['notebooks', 'assets', 'reference']
 INDUSTRIAL_COURSE = ROOT/'courses'/'industrial-vision-lab'
 INDUSTRIAL_EXCLUDED_PARTS = {'.git', '.venv', '__pycache__', '.ipynb_checkpoints',
-                             'runtime', 'private', 'cache', 'site-private'}
+                             'runtime', 'private', 'cache', 'site-private', 'notebooks', 'executed'}
 DOCS = ['CURRICULUM.md', 'SOURCES.md', 'VERIFICATION.md']
 SCRIPTS = ['run_notebooks.py', 'package_course.py', 'audit_course.py']
 

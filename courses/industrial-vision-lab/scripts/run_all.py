@@ -19,8 +19,9 @@ from nbconvert.filters.markdown import markdown2html
 from jupyter_client import KernelManager
 from jupyter_client.kernelspec import KernelSpecManager
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+INDUSTRIAL_ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(INDUSTRIAL_ROOT))
 import lab_utils as lab
 import onsite_utils as onsite
 
@@ -52,7 +53,9 @@ def export_notebook(notebook) -> str:
     for cell in notebook.cells:
         if cell.cell_type == "markdown":
             text = markdown2html(cell.source)
-            text = text.replace('../DATA_SOURCES.md', 'data-sources.html').replace('../sources/source_manifest.json', 'source_manifest.json')
+            text = text.replace('../courses/industrial-vision-lab/DATA_SOURCES.md', 'data-sources.html')
+            text = text.replace('../courses/industrial-vision-lab/sources/source_manifest.json', 'source_manifest.json')
+            text = text.replace('../courses/industrial-vision-lab/sources/onsite_capture_manifest.json', 'onsite_capture_manifest.json')
             chunks.append(f'<section class="cell">{text}</section>')
         elif cell.cell_type == "code":
             chunks.append(f'<section class="cell"><pre class="input"><code>{html.escape(cell.source)}</code></pre>')
@@ -120,16 +123,19 @@ def main() -> None:
     parser.add_argument("--timeout", type=int, default=120, help="Per-code-cell timeout")
     args = parser.parse_args()
     if args.download:
-        subprocess.run([sys.executable, str(ROOT / "scripts/download_data.py")], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(INDUSTRIAL_ROOT / "scripts/download_data.py")], cwd=ROOT, check=True)
     image_rows = [row for row in lab.manifest()["files"] if row["kind"] == "image"]
     for row in image_rows:
         lab.load_case(row["id"])
     onsite.load_case()
-    paths = sorted((ROOT / "notebooks").glob("*.ipynb"))
+    paths = [ROOT / "notebooks" / f"{index:02d}_" for index in range(22, 33)]
+    paths = [next((ROOT / "notebooks").glob(path.name + "*.ipynb"), None) for path in paths]
+    paths = [path for path in paths if path is not None]
     if len(paths) != 11:
-        raise ValueError(f"Expected 11 source notebooks, found {len(paths)}")
-    executed_dir, site = ROOT / "executed", ROOT / "site"
-    executed_dir.mkdir(exist_ok=True); site.mkdir(exist_ok=True)
+        raise ValueError(f"Expected 11 unified industrial notebooks (22-32), found {len(paths)}")
+    executed_dir = ROOT / "artifacts" / "industrial-vision-lab" / "executed"
+    site = INDUSTRIAL_ROOT / "site"
+    executed_dir.mkdir(parents=True, exist_ok=True); site.mkdir(exist_ok=True)
     reports = []
     for index, path in enumerate(paths):
         print(f"[{index + 1}/{len(paths)}] Executing {path.name}", flush=True)
@@ -139,25 +145,25 @@ def main() -> None:
         output.write_text(page(report["title"], body,
                               previous=paths[index - 1].stem + ".html" if index else None,
                               following=paths[index + 1].stem + ".html" if index + 1 < len(paths) else None), encoding="utf-8")
-        report["html"] = output.relative_to(ROOT).as_posix()
+        report["html"] = output.relative_to(INDUSTRIAL_ROOT).as_posix()
         report["html_sha256"] = digest(output)
         reports.append(report)
         print(f"  Passed ({report['seconds']} s)", flush=True)
     payload = {"executed_at": datetime.now(timezone.utc).isoformat(), "python": sys.version.split()[0],
                "environment": {name: version(name) for name in ["numpy", "opencv-python", "matplotlib", "nbformat", "nbclient", "nbconvert", "ipykernel"]},
-               "source_manifest_sha256": digest(ROOT / "sources/source_manifest.json"),
+               "source_manifest_sha256": digest(INDUSTRIAL_ROOT / "sources/source_manifest.json"),
                "public_case_families": sorted({row["dataset"] for row in image_rows}),
                "authorized_onsite_data_included": True,
-               "onsite_manifest_sha256": digest(ROOT / "sources/onsite_capture_manifest.json"),
+               "onsite_manifest_sha256": digest(INDUSTRIAL_ROOT / "sources/onsite_capture_manifest.json"),
                "private_data_read": False, "notebooks_passed": len(reports), "notebooks": reports,
                "limitations": ["Teaching examples are not independent industrial validation", "No trained battery seven-slot recognizer", "Derived challenges are correlated with source photos"]}
     report_path = site / "execution_report.json"
     report_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (site / "source_manifest.json").write_text((ROOT / "sources/source_manifest.json").read_text(encoding="utf-8"), encoding="utf-8")
-    (site / "onsite_capture_manifest.json").write_bytes((ROOT / "sources/onsite_capture_manifest.json").read_bytes())
-    sources = markdown2html((ROOT / "DATA_SOURCES.md").read_text(encoding="utf-8"))
-    sources = sources.replace('sources/source_manifest.json', 'source_manifest.json')
-    sources = sources.replace('sources/onsite_capture_manifest.json', 'onsite_capture_manifest.json')
+    (site / "source_manifest.json").write_text((INDUSTRIAL_ROOT / "sources/source_manifest.json").read_text(encoding="utf-8"), encoding="utf-8")
+    (site / "onsite_capture_manifest.json").write_bytes((INDUSTRIAL_ROOT / "sources/onsite_capture_manifest.json").read_bytes())
+    sources = markdown2html((INDUSTRIAL_ROOT / "DATA_SOURCES.md").read_text(encoding="utf-8"))
+    sources = sources.replace('courses/industrial-vision-lab/sources/source_manifest.json', 'source_manifest.json')
+    sources = sources.replace('courses/industrial-vision-lab/sources/onsite_capture_manifest.json', 'onsite_capture_manifest.json')
     (site / "data-sources.html").write_text(page("素材与许可", sources), encoding="utf-8")
     descriptions = ["环境、来源与原标注", "暗环境与暗场、局部像素、试光记录", "灰度分布、全局与局部增强", "固定/自适应/Otsu、开闭运算", "边缘、局部标准差、方向纹理", "真实零件、当前编号、粘连与碎裂", "定位模板、旋转挑战、来源分组", "真实遮挡失败、拒判与验收", "五格规则、缺片与未知、坐标", "证据、幂等、待同步与私有导入", "当前实拍、方向校正、遮挡出画拒判与入库"]
     cards = ''.join(f'<a class="card" href="{path.stem}.html"><strong>{html.escape(report["title"])}</strong>{html.escape(description)}</a>'
@@ -167,7 +173,7 @@ def main() -> None:
              f'<p>本次完整执行通过 <strong>{len(reports)}/{len(paths)}</strong> 本；<a href="execution_report.json">查看版本、耗时和摘要</a>。无需联网即可阅读全部图表和参数选图。</p><div class="cards">{cards}</div>'
              '<h2>如何学习</h2><p>按顺序阅读 00–10；需要修改参数时，在 JupyterLab 打开 notebooks 里的同名文件并逐格执行。第10课调用课程工作区同级 battery-weld 项目的实际传统引擎，前十课可独立执行。</p>')
     (site / "index.html").write_text(page("课程目录", intro), encoding="utf-8")
-    print(f"All {len(reports)} notebooks passed; offline HTML: site/index.html", flush=True)
+    print(f"All {len(reports)} unified industrial notebooks passed; offline HTML: {site / 'index.html'}", flush=True)
 
 
 if __name__ == "__main__":

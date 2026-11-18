@@ -7,7 +7,8 @@ import textwrap
 
 import nbformat as nbf
 
-ROOT = Path(__file__).resolve().parents[1]
+INDUSTRIAL_ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 
 
 def md(source: str):
@@ -21,9 +22,12 @@ def code(source: str):
 SETUP = code('''
 from pathlib import Path
 import sys, json
-ROOT = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / "lab_utils.py").is_file())
+ROOT = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / "course_utils.py").is_file())
+INDUSTRIAL_ROOT = ROOT / "courses" / "industrial-vision-lab"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+if str(INDUSTRIAL_ROOT) not in sys.path:
+    sys.path.insert(0, str(INDUSTRIAL_ROOT))
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -36,11 +40,11 @@ SOURCES = md('''
 
 公开焊缝：sukmaadhiwijaya / rikkarth，固定提交 `8b80d1afe88c0b946500a498cbdb9d7a1eda5533`，数据卡声明 CC0-1.0；工业表面：Kolektor Group / ViCoS，CC BY-NC-SA 4.0；分散零件：Tung1213，CC BY-SA 3.0；重叠零件：Technologyfelix，CC BY-SA 4.0。相关照片和派生图保留原许可及署名。
 
-完整来源、原许可页、下载路径及 SHA256 见 [DATA_SOURCES.md](../DATA_SOURCES.md) 和 [source_manifest.json](../sources/source_manifest.json)。本课是非商业教学。灰度、二值、叠框及扰动均为原照片的派生图，七格合成图另有醒目标记。它们不等于新增独立验收数据，也不证明电池焊接准确率或机械强度。
+完整来源、原许可页、下载路径及 SHA256 见 [DATA_SOURCES.md](../courses/industrial-vision-lab/DATA_SOURCES.md) 和 [source_manifest.json](../courses/industrial-vision-lab/sources/source_manifest.json)。本课是非商业教学。灰度、二值、叠框及扰动均为原照片的派生图，七格合成图另有醒目标记。它们不等于新增独立验收数据，也不证明电池焊接准确率或机械强度。
 ''')
 
 LESSONS = [
-("00_environment_and_real_cases", "00｜先看真实案例和环境", [
+("22_environment_and_real_cases", "22｜先看真实案例和环境", [
 md('''
 # 00｜先看真实案例和环境
 
@@ -93,7 +97,7 @@ md('''
 
 产线迁移顺序：拍清楚 → 定位汇流排 → 找镍片 → 对齐焊格 → 判七格外观 → 保存证据。强度与内部熔合不能仅凭二维外观保证。
 '''), SOURCES]),
-("01_lighting_and_night_fill", "01｜先打好光：夜间补光和像素", [
+("23_lighting_and_night_fill", "23｜先打好光：夜间补光和像素", [
 md('''
 # 01｜先打好光：夜间补光和像素
 
@@ -159,7 +163,7 @@ capture_recipe = {"camera_name": "OsmoAction4", "width": 1920, "height": 1080,
 display(capture_recipe)
 assert capture_recipe["actual_exposure"] is None
 '''), SOURCES]),
-("02_grayscale_contrast_clahe", "02｜灰度、直方图和局部对比", [
+("24_grayscale_contrast_clahe", "24｜灰度、直方图和局部对比", [
 md('''
 # 02｜灰度、直方图和局部对比
 
@@ -206,7 +210,7 @@ md('''
 
 把案例改成 `kolektor_normal_0`，检查正常纹理是否同样被增强。再把 `tileGridSize` 从 `(8, 8)` 改为 `(4, 4)`，观察局部增强范围。记录参数和原文件摘要，避免日后无法重现。
 '''), SOURCES]),
-("03_binary_and_morphology", "03｜二值化与形态学", [
+("25_binary_and_morphology", "25｜二值化与形态学", [
 md('''
 # 03｜二值化与形态学
 
@@ -265,7 +269,7 @@ overlay = image.copy(); overlay[truth > 0] = (40, 40, 230)
 lab.show_images([image, overlay, adaptive],
                 ["真实原图", "原始人工缺陷掩膜叠加", "算法二值候选：并非缺陷真值"], cols=3)
 '''), SOURCES]),
-("04_edges_and_texture", "04｜边缘与纹理：看见细节", [
+("26_edges_and_texture", "26｜边缘与纹理：看见细节", [
 md('''
 # 04｜边缘与纹理：看见细节
 
@@ -311,7 +315,7 @@ lab.show_images([reference, edge_ref, noisy, edge_noise],
                 ["真实焊缝灰度", "原图边缘", "派生：噪声挑战", "噪声边缘"], cols=4)
 print("边缘密度，原图 / 派生噪声：", round(float(np.mean(edge_ref > 0)), 4), round(float(np.mean(edge_noise > 0)), 4))
 '''), SOURCES]),
-("05_single_and_multi_count", "05｜单件、多个与当前视野计数", [
+("27_single_and_multi_count", "27｜单件、多个与当前视野计数", [
 md('''
 # 05｜单件、多个与当前视野计数
 
@@ -387,7 +391,7 @@ md('''
 
 先检测当前视野中实际可见汇流排，再分割每块上的镍片。N×M 只可作配方中的预期数量，不能代替当前图像的实测数量。被遮挡、出画或粘连的目标应标出原因并待复核。多个摄像头若视野重叠，先校准和去重，再算整包数量。
 '''), SOURCES]),
-("06_few_sample_template", "06｜小样本模板：快速起步与边界", [
+("28_few_sample_template", "28｜小样本模板：快速起步与边界", [
 md('''
 # 06｜小样本模板：快速起步与边界
 
@@ -432,7 +436,7 @@ md('''
 
 要评估泛化，需把同一物理零件、同一视频连续帧及其所有增强保持在同一组。旋转、调亮、换背景不能增加独立来源数。当前自匹配分数绝不填入“准确率”。
 '''), SOURCES]),
-("07_complex_scenes_and_quality_gate", "07｜复杂场景与拒判", [
+("29_complex_scenes_and_quality_gate", "29｜复杂场景与拒判", [
 md('''
 # 07｜复杂场景与拒判
 
@@ -489,7 +493,7 @@ md('''
 
 每个新物理样本保留原图、逐件汇流排框、镍片存在性、七格人工标签、光照/角度、结果与原因。按来源分组冻结验收集，不能看完错例再在同一集上反复调参并称独立成绩。对“至少 90%”必须先确认口径是逐格、逐镍片还是整帧，以及黄色如何计入。
 '''), SOURCES]),
-("08_seven_slots_and_unknown", "08｜七格至少五格与未知状态", [
+("30_seven_slots_and_unknown", "30｜七格至少五格与未知状态", [
 md('''
 # 08｜七格至少五格与未知状态
 
@@ -560,7 +564,7 @@ assert np.allclose(restored, roi)
 print("归一化 xywh", normalized)
 print("ROI 七格边界（只有对齐后才有业务意义）", np.linspace(roi[0], roi[0] + roi[2], 8).tolist())
 '''), SOURCES]),
-("09_evidence_database_and_private_case", "09｜保存证据、数据库与私有样本", [
+("31_evidence_database_and_private_case", "31｜保存证据、数据库与私有样本", [
 md('''
 # 09｜保存证据、数据库与私有样本
 
@@ -649,6 +653,11 @@ def main() -> None:
         })
         for index, cell in enumerate(notebook.cells):
             cell["id"] = f"{slug[:20]}-{index:02d}"
+            if index == 0 and cell.cell_type == "markdown":
+                lines = cell.source.splitlines()
+                if lines and lines[0].startswith("# "):
+                    lines[0] = "# " + title
+                    cell.source = "\n".join(lines)
         nbf.write(notebook, output)
         print(output.name)
 

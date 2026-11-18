@@ -11,3 +11,6 @@ docs/feishu-revision/
 /verification/
 /.jupyter/
 /data/
+/.env
+/.env.*
+!/.env.example

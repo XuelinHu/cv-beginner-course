@@ -8,8 +8,8 @@ import nbformat as nbf
 
 from create_notebooks import ROOT, SETUP, code, md
 
-SLUG = "10_live_blade_busbar_inspection"
-TITLE = "10｜用当前相机实拍走完汇流排检测"
+SLUG = "32_live_blade_busbar_inspection"
+TITLE = "32｜用当前相机实拍走完汇流排检测"
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
     if output.exists() and not args.overwrite_generated:
         raise FileExistsError("Preserving the existing on-site lesson")
     cells = [md('''
-        # 10｜用当前相机实拍走完汇流排检测
+        # 32｜用当前相机实拍走完汇流排检测
 
         本课用你当前 Windows 笔记本连接的 **OsmoAction4** 真实取帧，演示矩形刀片电池汇流排的处理流程。
         拍摄于北京时间 **2026-11-18 05:23:32**，不是图库轮播、圆柱电芯，也不是合成焊点。
@@ -160,7 +160,7 @@ def main():
         重跑同一事件不重复插入。这里的 outbox 保持 pending，**没有发送 MES，也不伪造 MES 回执**。
         实际检测数据库已确认保存，与本课演示数据库的 pending 是两件独立的事。
         '''), code('''
-        db = lab.create_database(ROOT / "runtime/onsite_teaching.sqlite3")
+        db = lab.create_database(INDUSTRIAL_ROOT / "runtime/onsite_teaching.sqlite3")
         recipe = {"required_good": 5, "total_slots": 7, "captured_at_utc": case["captured_at"],
             "crop_sha256": case["image_sha256"], "crop_xywh": case["crop_xywh"],
             "capture_engine_source_sha256": case["engine_source_sha256"],
@@ -219,7 +219,7 @@ def main():
         print(json.dumps(challenge_rows, ensure_ascii=False, indent=2))
         assert challenge_rows[-1]["observed"] == 0 and challenge_rows[-1]["status"] == "REVIEW"
         assert all(row["geometry"]["hidden_object_count"] is None for row in challenge_rows)
-        (ROOT / "outputs/public/onsite_robustness.json").write_text(
+        (INDUSTRIAL_ROOT / "outputs/public/onsite_robustness.json").write_text(
             json.dumps({"independent_validation": False, "cases": challenge_rows}, ensure_ascii=False, indent=2), encoding="utf-8")
         '''), md('''
         ## 10. 现场处理顺序与系统使用

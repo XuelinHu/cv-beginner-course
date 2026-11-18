@@ -6,6 +6,7 @@ __pycache__/
 !.env.example
 data/cache/
 data/private/
+data/legacy_import/
 outputs/private/
 site-private/
 *.sqlite3

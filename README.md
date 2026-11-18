@@ -1,6 +1,6 @@
 # 计算机视觉入门：从像素矩阵到可运行模型
 
-给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。22 课各自包含输入图片、矩阵或张量、处理步骤、输出可视化、评价与练习。不需要显卡或API密钥。00–18基础实验安装依赖后可离线运行；19–21真实工业、手势和人体课程首次联网下载数据/模型，之后复用本地缓存。
+给第一次学习计算机视觉的学生使用的中文 Jupyter Notebook 项目。00–32 共 33 节，统一放在一个 `notebooks/` 目录、使用一套 Python 环境和一条 Jupyter 启动入口。课程包含基础视觉、模型实验，以及刀片电池汇流排焊接外观检测专题；专题从暗光成像开始，逐步定位汇流排、镍片与七格，并覆盖拒判、证据记录和当前实拍重跑。
 
 ## 第一次运行（推荐：Python 3.11 + CPU）
 
@@ -12,7 +12,7 @@ Windows PowerShell：
 cd D:\workspace\cv\cv-beginner-course
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+.\.venv\Scripts\python.exe -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m jupyterlab notebooks
 ```
@@ -30,7 +30,7 @@ conda run -n pyg python -m jupyterlab notebooks
 
 ```powershell
 conda create -n cv-course python=3.11 pip -y
-conda run -n cv-course python -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+conda run -n cv-course python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 conda run -n cv-course python -m pip install -r requirements.txt
 conda run -n cv-course python -m jupyterlab notebooks
 ```
@@ -41,7 +41,7 @@ Linux：
 cd /path/to/cv-beginner-course
 python3.11 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+.venv/bin/python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cpu
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m jupyterlab notebooks
 ```
@@ -77,11 +77,11 @@ python3.11 -m venv .venv
 
 完整目录对应关系和各课前置知识见 [课程地图](docs/CURRICULUM.md)。
 
-## 工业视觉专项实验
+## 刀片电池焊接检测专题
 
-本仓库还包含独立组织的[工业视觉入门实验室](courses/industrial-vision-lab/README.md)：从暗场补光、二值化和纹理，到汇流排定位、镍片/七格检查、遮挡与摆歪时的拒判，以及实拍教程和数据留存。它与上面的 22 课共享同一仓库，但保留自己的依赖、运行入口和数据边界；现场原图、私有样本、SQLite 数据库和运行时文件不会提交或打入学生包。
+第 22–32 节是与前 22 节连续编号的专题内容，不另设第二套 Notebook、依赖或启动方式。专题源材料、许可清单、工具模块和现场样例保存在 `courses/industrial-vision-lab/`；完整私有数据集和运行数据库位于局域网服务器，不会推送到公开 Git 仓库。学生离线学习仍可使用课程中的公开样例及执行输出。
 
-00–18于2026-11-16在全新Python 3.11环境逐课执行，19–21于2026-11-17在同一独立环境执行；22课均保留实际图文输出。详情见 [运行验收记录](docs/VERIFICATION.md)。
+00–21 的既有验收记录见 [运行验收记录](docs/VERIFICATION.md)；统一后的 00–32 需在局域网服务器重新逐课执行并生成独立验收报告。
 
 ## 真实场景三课怎么学
 
@@ -98,11 +98,11 @@ PyTorch 课程统一使用 `device()`，自动选 CUDA、MPS 或 CPU，训练数
 在有兼容 NVIDIA 驱动的机器上，可在新环境使用以下命令替换 CPU 的 torch 安装步骤，其余命令相同：
 
 ```powershell
-python -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+python -m pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cu128
 python -m pip install -r requirements.txt
 ```
 
-这是 PyTorch 2.5.1 官方提供的安装路径，驱动/硬件要求参见 [PyTorch 版本安装说明](https://pytorch.org/get-started/previous-versions/)。本次实际验证机器只有 CPU；GPU 路径已编写，尚未在真实显卡上执行。
+这是 PyTorch 2.9.1 的 CUDA 12.8 安装路径，驱动/硬件要求参见 [PyTorch 版本安装说明](https://pytorch.org/get-started/previous-versions/)。服务器 RTX 5090 将使用此 GPU 环境并进行实机验证。
 
 强制 CPU：PowerShell 先执行 `$env:CV_DEVICE='cpu'`，Linux 先执行 `export CV_DEVICE=cpu`。设置后重启 Jupyter 内核。`CV_DEVICE=cuda` 在没有 CUDA 时会明确报错，避免误以为使用了显卡。
 

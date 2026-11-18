@@ -15,7 +15,10 @@ def main():
     rows, errors = [], []
     imports = set()
     paths = sorted((ROOT/'notebooks').glob('*.ipynb'))
-    if len(paths) != 22: errors.append(f'应有22课，实际{len(paths)}')
+    expected = [f'{index:02d}_' for index in range(33)]
+    actual = [path.name[:3] for path in paths]
+    if len(paths) != 33: errors.append(f'应有33课，实际{len(paths)}')
+    if actual != expected: errors.append(f'课程编号应连续为00–32，实际为{actual}')
     for p in paths:
         nb = nbformat.read(p, as_version=4)
         nbformat.validate(nb)
@@ -34,7 +37,7 @@ def main():
             for out in c.outputs:
                 if out.output_type == 'error': errors.append(f'{p.name}: {out.ename}')
         if images < 2: errors.append(f'{p.name}: 实际嵌入图不足')
-        if not any(term in texts for term in ['矩阵', '张量', 'NCHW']):
+        if int(p.stem[:2]) < 22 and not any(term in texts for term in ['矩阵', '张量', 'NCHW']):
             errors.append(f'{p.name}: 缺少矩阵/张量维度解释')
         rows.append({'notebook': p.name, 'code_cells': len(code), 'image_outputs': images,
                      'sha256': hashlib.sha256(p.read_bytes()).hexdigest()})
@@ -53,7 +56,7 @@ def main():
               'total_embedded_images': sum(r['image_outputs'] for r in rows),
               'imports': sorted(imports), 'errors': errors, 'ok': not errors}
     (ROOT/'verification').mkdir(exist_ok=True)
-    (ROOT/'verification/audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'verification/unified-course-audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if errors: raise SystemExit(1)
 
