@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent
 def configure_plot_fonts():
     available = {f.name for f in font_manager.fontManager.ttflist}
     for font in ['Microsoft YaHei', 'SimHei', 'Noto Sans CJK SC', 'Noto Sans CJK HK',
-                 'Noto Sans CJK JP', 'WenQuanYi Zen Hei', 'DejaVu Sans']:
+                 'Noto Sans CJK JP', 'Noto Sans CJK TC', 'WenQuanYi Zen Hei']:
         if font in available:
             plt.rcParams['font.family'] = 'sans-serif'
             plt.rcParams['font.sans-serif'] = [font]
@@ -28,6 +28,8 @@ def configure_plot_fonts():
             plt.rcParams['font.family'] = 'sans-serif'
             plt.rcParams['font.sans-serif'] = [font, 'DejaVu Sans']
             return
+    plt.rcParams['font.family'] = 'sans-serif'
+    plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
 
 
 configure_plot_fonts()
