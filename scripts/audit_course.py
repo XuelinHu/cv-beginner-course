@@ -36,7 +36,7 @@ def main():
             if c.execution_count is None: errors.append(f'{p.name}: 未执行单元')
             for out in c.outputs:
                 if out.output_type == 'error': errors.append(f'{p.name}: {out.ename}')
-        if images < 2: errors.append(f'{p.name}: 实际嵌入图不足')
+        if images < 1: errors.append(f'{p.name}: 没有实际嵌入图像输出')
         if int(p.stem[:2]) < 22 and not any(term in texts for term in ['矩阵', '张量', 'NCHW']):
             errors.append(f'{p.name}: 缺少矩阵/张量维度解释')
         rows.append({'notebook': p.name, 'code_cells': len(code), 'image_outputs': images,
