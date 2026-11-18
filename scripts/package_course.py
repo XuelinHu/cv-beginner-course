@@ -8,7 +8,8 @@ FILES = ['README.md', 'requirements.txt', 'requirements-optional.txt', 'LICENSE'
 FOLDERS = ['notebooks', 'assets', 'reference']
 INDUSTRIAL_COURSE = ROOT/'courses'/'industrial-vision-lab'
 INDUSTRIAL_EXCLUDED_PARTS = {'.git', '.venv', '__pycache__', '.ipynb_checkpoints',
-                             'runtime', 'private', 'cache', 'site-private', 'notebooks', 'executed'}
+                             'runtime', 'private', 'cache', 'site-private', 'notebooks', 'executed',
+                             'legacy_import'}
 DOCS = ['CURRICULUM.md', 'SOURCES.md', 'VERIFICATION.md']
 SCRIPTS = ['run_notebooks.py', 'package_course.py', 'audit_course.py']
 
@@ -35,6 +36,7 @@ def main():
         names = archive.namelist()
         assert not any('feishu-backup' in n or 'feishu-revision' in n or '.git/' in n for n in names)
         assert not any('/runtime/' in n or '/data/private/' in n or '.sqlite' in n.lower() or n.endswith('.db') for n in names)
+        assert not any('/legacy_import/' in n for n in names)
     print(destination)
     print(f'{len(paths)} 文件，{destination.stat().st_size/1024**2:.1f} MB')
 
