@@ -18,7 +18,7 @@
 |11|[光流](../notebooks/11_optical_flow.ipynb)|运动向量场、重映射与 EPE|
 |12|[三维重建](../notebooks/12_reconstruction.ipynb)|相机观测、三角化和重投影误差|
 |13|[姿态估计](../notebooks/13_pose.ipynb)|坐标矩阵与同一图像叠加显示|
-|14|[CT 预处理](../notebooks/14_ct_preprocessing.ipynb)|真实公开 DICOM 原图、HU 和窗宽窗位|
+|14|[CT 预处理与分割](../notebooks/14_ct_preprocessing.ipynb)|真实公开 DICOM 原图、HU、窗宽窗位、阈值分割与叠加|
 |15|[水下图像](../notebooks/15_underwater.ipynb)|真实公开 EUVP 输入、参考图与传统增强|
 |16|[真实手指手势识别](../notebooks/16_hand_gesture_real.ipynb)|关键点、ROI 逆变换与逐帧推理|
 |17|[真实人体姿态与动作](../notebooks/17_human_pose_real.ipynb)|关键点映射、输出张量与动作角度|
