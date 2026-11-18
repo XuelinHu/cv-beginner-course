@@ -4,7 +4,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import sqlite3
+import sys
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 from mysql_course_store import connect
 
 
@@ -13,7 +16,7 @@ def canonical(value) -> str:
 
 
 def main() -> None:
-    root = Path(__file__).resolve().parents[1] / "courses/industrial-vision-lab/data/legacy_import/database"
+    root = ROOT / "courses/industrial-vision-lab/data/legacy_import/database"
     connection = connect()
     tables_checked = rows_checked = 0
     try:
