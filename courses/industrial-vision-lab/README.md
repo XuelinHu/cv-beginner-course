@@ -16,7 +16,7 @@
 
 它会执行全部十一本笔记本，将带输出副本放到 `executed/`，把离线网页导出到 `site/`。用浏览器打开 `site/index.html` 即可阅读。`site/execution_report.json` 记录实际软件版本、各课耗时、来源和文件摘要；任何一课报错会停止。
 
-第10课调用主项目实际传统引擎，须将有访问权限的主项目克隆为相邻目录 `../battery-weld`：`git clone git@github.com:XuelinHu/battery-weld.git ../battery-weld`。来源清单分别保留采样时引擎摘要和本次已复核的重算引擎摘要；变更后需复核再更新，不能自动绕过。前十课仍可单独执行，不依赖主项目。现场重跑禁用私有参考图，只运行传统轮廓流程。
+第10课调用主项目实际传统引擎。当前课程位于 `cv-beginner-course/courses/industrial-vision-lab`，须将有访问权限的主项目克隆到课程工作区同级目录 `../../../battery-weld`：`git clone git@github.com:XuelinHu/battery-weld.git ../../../battery-weld`。来源清单分别保留采样时引擎摘要和本次已复核的重算引擎摘要；变更后需复核再更新，不能自动绕过。前十课仍可单独执行，不依赖主项目。现场重跑禁用私有参考图，只运行传统轮廓流程。
 
 需要自己改参数时：
 

@@ -29,7 +29,7 @@ def checksum(data: bytes) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default="http://127.0.0.1:8019")
-    parser.add_argument("--main-root", type=Path, default=ROOT.parent / "battery-weld")
+    parser.add_argument("--main-root", type=Path, default=ROOT.parents[2] / "battery-weld")
     parser.add_argument("--publish-authorized", action="store_true", required=True,
                         help="Use only after the owner authorizes this current frame for the tutorial")
     args = parser.parse_args()

@@ -1,12 +1,12 @@
 # 教程静态服务管理
 
-部署目录为 /ds1/workspace/CV/industrial-vision-lab，Git 来源为 XuelinHu/industrial-vision-lab。运行入口仅使用 Linux 自带 Python 3 标准库，不安装 Jupyter、OpenCV 或模型环境，不依赖主检测项目的虚拟环境。
+主仓库为 `XuelinHu/cv-beginner-course`，本课程位于 `/ds1/workspace/CV/cv-beginner-course/courses/industrial-vision-lab`。运行入口仅使用 Linux 自带 Python 3 标准库，不安装 Jupyter、OpenCV 或模型环境，不依赖主检测项目的虚拟环境。
 
 ## 日常命令
 
 在服务器执行：
 
-    cd /ds1/workspace/CV/industrial-vision-lab
+    cd /ds1/workspace/CV/cv-beginner-course/courses/industrial-vision-lab
     python3 scripts/manage_site.py start
     python3 scripts/manage_site.py status
     python3 scripts/manage_site.py restart
@@ -44,11 +44,11 @@ healthz 返回进程、源码版本、实例标识和公开执行记录摘要；
 
 后续先检查工作区，再进行快进更新：
 
-    cd /ds1/workspace/CV/industrial-vision-lab
+    cd /ds1/workspace/CV/cv-beginner-course
     git status --short
     git pull --ff-only
-    python3 scripts/manage_site.py restart
-    python3 scripts/manage_site.py status
+    python3 courses/industrial-vision-lab/scripts/manage_site.py restart
+    python3 courses/industrial-vision-lab/scripts/manage_site.py status
 
 若工作区存在用户修改，先审阅并保存；不要使用 reset --hard 或强制覆盖。GitHub 使用服务器已有 SSH 授权，不需要复制本机令牌或提交密钥。runtime、私有图片、SQLite、缓存和 .env 均不进入 Git。
 
@@ -56,15 +56,15 @@ healthz 返回进程、源码版本、实例标识和公开执行记录摘要；
 
 Windows 现有 pyg 环境：
 
-    conda run --no-capture-output -n pyg python -m unittest discover -s tests -v
-    conda run --no-capture-output -n pyg python scripts/verify_artifacts.py
+    conda run --no-capture-output -n pyg python -m unittest discover -s courses/industrial-vision-lab/tests -v
+    conda run --no-capture-output -n pyg python courses/industrial-vision-lab/scripts/verify_artifacts.py
 
 静态服务测试只依赖标准库，服务器也可单独执行：
 
-    python3 -m unittest discover -s tests -p test_static_site.py -v
+    python3 -m unittest discover -s courses/industrial-vision-lab/tests -p test_static_site.py -v
 
 Windows 如需临时前台浏览已生成的教材：
 
-    conda run --no-capture-output -n pyg python scripts/serve_site.py --bind 127.0.0.1 --port 4034
+    conda run --no-capture-output -n pyg python courses/industrial-vision-lab/scripts/serve_site.py --bind 127.0.0.1 --port 4034
 
 管理脚本依赖 Linux /proc 做进程归属核对；不会在 Windows 猜测 PID 后结束进程。

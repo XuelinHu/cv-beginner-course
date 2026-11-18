@@ -26,9 +26,9 @@ def load_case():
 
 
 def replay(image, case):
-    source = ROOT.parent / "battery-weld/backend/classical.py"
+    source = ROOT.parents[2] / "battery-weld/backend/classical.py"
     if not source.is_file():
-        raise FileNotFoundError("第10课须把 https://github.com/XuelinHu/battery-weld 克隆到本项目旁边；前十课不需要")
+        raise FileNotFoundError("第10课须把 https://github.com/XuelinHu/battery-weld 克隆到课程工作区同级目录；前十课不需要")
     if lab.file_hash(source) != case.get("replay_engine_source_sha256", case["engine_source_sha256"]):
         raise ValueError("Main inspection engine changed; review and revalidate this lesson before updating its source lock")
     spec = importlib.util.spec_from_file_location("onsite_classical_engine", source)

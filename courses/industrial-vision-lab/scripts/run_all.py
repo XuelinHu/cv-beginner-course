@@ -165,7 +165,7 @@ def main() -> None:
     intro = ('<h1>工业视觉入门实验室</h1><p>从真实照片出发，先拍清楚，再定位、处理、计数、判规则、存证据。十一本中文可执行教程，适合第一次使用 OpenCV 的读者。</p>'
              '<p class="lesson-note">00–09 使用许可已记录的公开素材；新增第10课使用用户授权的当前 OsmoAction4 工件实拍，含取帧时间、实际计数与数据库证据。网页是实拍记录，不是实时视频。七格仍待复核，尚无独立工业验收结论。</p>'
              f'<p>本次完整执行通过 <strong>{len(reports)}/{len(paths)}</strong> 本；<a href="execution_report.json">查看版本、耗时和摘要</a>。无需联网即可阅读全部图表和参数选图。</p><div class="cards">{cards}</div>'
-             '<h2>如何学习</h2><p>按顺序阅读 00–10；需要修改参数时，在 JupyterLab 打开 notebooks 里的同名文件并逐格执行。第10课调用相邻 battery-weld 项目的实际传统引擎，前十课可独立执行。</p>')
+             '<h2>如何学习</h2><p>按顺序阅读 00–10；需要修改参数时，在 JupyterLab 打开 notebooks 里的同名文件并逐格执行。第10课调用课程工作区同级 battery-weld 项目的实际传统引擎，前十课可独立执行。</p>')
     (site / "index.html").write_text(page("课程目录", intro), encoding="utf-8")
     print(f"All {len(reports)} notebooks passed; offline HTML: site/index.html", flush=True)
 
