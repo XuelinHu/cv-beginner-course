@@ -9,11 +9,12 @@ from matplotlib import font_manager
 ROOT = Path(__file__).resolve().parent
 
 
-def _configure_plot_fonts():
+def configure_plot_fonts():
     available = {f.name for f in font_manager.fontManager.ttflist}
     for font in ['Microsoft YaHei', 'SimHei', 'Noto Sans CJK SC', 'Noto Sans CJK HK',
                  'Noto Sans CJK JP', 'WenQuanYi Zen Hei', 'DejaVu Sans']:
         if font in available:
+            plt.rcParams['font.family'] = 'sans-serif'
             plt.rcParams['font.sans-serif'] = [font]
             return
     for font_path in [
@@ -24,11 +25,12 @@ def _configure_plot_fonts():
         if font_path.is_file():
             font_manager.fontManager.addfont(str(font_path))
             font = font_manager.FontProperties(fname=str(font_path)).get_name()
+            plt.rcParams['font.family'] = 'sans-serif'
             plt.rcParams['font.sans-serif'] = [font, 'DejaVu Sans']
             return
 
 
-_configure_plot_fonts()
+configure_plot_fonts()
 
 
 def setup(seed=42):
@@ -39,7 +41,7 @@ def setup(seed=42):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
     torch.set_num_threads(min(4, os.cpu_count() or 1))
-    _configure_plot_fonts()
+    configure_plot_fonts()
     plt.rcParams['axes.unicode_minus'] = False
     plt.rcParams['figure.dpi'] = 105
     (ROOT / 'outputs').mkdir(exist_ok=True)

@@ -14,18 +14,14 @@ from typing import Iterable
 import cv2
 import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib import font_manager
 import numpy as np
+from course_utils import configure_plot_fonts
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "outputs/public"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 matplotlib.rcParams["axes.unicode_minus"] = False
-available_fonts = {font.name for font in font_manager.fontManager.ttflist}
-for preferred in ("Microsoft YaHei", "Noto Sans CJK SC", "SimHei", "DejaVu Sans"):
-    if preferred in available_fonts:
-        matplotlib.rcParams["font.family"] = preferred
-        break
+configure_plot_fonts()
 
 
 def file_hash(path: Path) -> str:
