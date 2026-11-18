@@ -1,0 +1,9 @@
+# Preserve source-data and executed-artifact hashes on all platforms.
+/data/public/** -text
+/data/authorized_onsite/** -text
+/sources/onsite_capture_manifest.json -text
+/executed/** -text
+/site/** -text
+/notebooks/** -text
+*.py text eol=lf
+*.ps1 text eol=crlf

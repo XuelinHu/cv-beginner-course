@@ -1,0 +1,1421 @@
+{
+  "case_id": "osmo_20261117T212335Z",
+  "publication_scope": "user_authorized_onsite",
+  "authorization": "Owner explicitly requested the current laptop-camera scene in the existing online tutorial on 2026-11-18",
+  "license": "Owner retains rights; permission limited to this project tutorial; no general open-data license",
+  "camera": "OsmoAction4 attached to the current Windows laptop",
+  "captured_at": "2026-11-17T21:23:32.356460+00:00",
+  "lighting_context": "Owner reports room lights off and one fill light; no measured spectrum or illuminance",
+  "image": "data/authorized_onsite/osmo_20261117T212335Z/workpieces.png",
+  "image_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+  "source_frame_sha256": "44dd8293bfe574e7038b804f2b23e6c7b2a471f66308c8300a05f28fb96e2bf4",
+  "stored_image_sha256": "2b98c81471b564fe9ddd259e30444bef3718498097f14b16bb401e4cc49beea4",
+  "source_shape_bgr": [
+    1080,
+    1920,
+    3
+  ],
+  "crop_xywh": [
+    585,
+    67,
+    847,
+    700
+  ],
+  "transform": "Lossless BGR8 PNG; workpiece union crop with 28px margin; EXIF not retained",
+  "database_evidence": {
+    "acknowledged": true,
+    "png_file_hash_verified": true,
+    "decoded_bgr_hash_verified": true
+  },
+  "lighting_requested": {
+    "scene": "night_fill_light", "lamp_on": true, "exposure": null,
+    "autofocus": true, "auto_exposure": true
+  },
+  "camera_reported": {
+    "width": 1920.0, "height": 1080.0, "fps": 30.0, "backend": "MediaFoundation",
+    "exposure": null, "gain": null, "focus": null, "white_balance": null,
+    "controls_supported": false, "requested_controls_accepted": {"autofocus": false}
+  },
+  "live_result": {
+    "engine": "classical",
+    "observed": 9,
+    "counts": {
+      "ng": 0,
+      "ok": 0,
+      "review": 9,
+      "busbars": 9,
+      "nickel_missing": 0,
+      "nickel_present": 0,
+      "nickel_unknown": 9
+    },
+    "status": "REVIEW",
+    "quality": {
+      "basis": "native_luma_pixels_sharpness_at_max_640_side",
+      "reasons": [],
+      "contrast": 147.0,
+      "reliable": true,
+      "sharpness": 377.136,
+      "brightness": 94.271,
+      "dark_fraction": 0.121578,
+      "saturated_fraction": 3e-06
+    }
+  },
+  "targets": [
+    {
+      "index": 1,
+      "bbox": [
+        0.319347,
+        0.138687,
+        0.08849,
+        0.232511
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 59.0,
+        "reliable": true,
+        "sharpness": 109.955,
+        "brightness": 51.814,
+        "dark_fraction": 3e-05,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "BUSBAR_GEOMETRY_UNCONFIRMED",
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "bbox": [
+        0.40323,
+        0.111398,
+        0.07864,
+        0.230271
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 122.0,
+        "reliable": true,
+        "sharpness": 331.469,
+        "brightness": 90.263,
+        "dark_fraction": 0.002391,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "bbox": [
+        0.477669,
+        0.107428,
+        0.083444,
+        0.230919
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 131.05,
+        "reliable": true,
+        "sharpness": 241.52,
+        "brightness": 157.641,
+        "dark_fraction": 0.000145,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "bbox": [
+        0.561908,
+        0.100524,
+        0.085556,
+        0.235014
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 129.0,
+        "reliable": true,
+        "sharpness": 263.696,
+        "brightness": 123.662,
+        "dark_fraction": 6e-05,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "bbox": [
+        0.641468,
+        0.088348,
+        0.089491,
+        0.243835
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 88.0,
+        "reliable": true,
+        "sharpness": 180.768,
+        "brightness": 82.546,
+        "dark_fraction": 9.1e-05,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "bbox": [
+        0.324885,
+        0.376821,
+        0.0797,
+        0.267161
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 55.0,
+        "reliable": true,
+        "sharpness": 54.135,
+        "brightness": 62.19,
+        "dark_fraction": 0.000923,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "bbox": [
+        0.400405,
+        0.351167,
+        0.110241,
+        0.29208
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 116.0,
+        "reliable": true,
+        "sharpness": 112.267,
+        "brightness": 147.503,
+        "dark_fraction": 0.001646,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "bbox": [
+        0.493579,
+        0.340305,
+        0.104802,
+        0.343803
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 196.0,
+        "reliable": true,
+        "sharpness": 73.874,
+        "brightness": 176.37,
+        "dark_fraction": 5.6e-05,
+        "saturated_fraction": 1.9e-05
+      },
+      "reason": [
+        "BUSBAR_GEOMETRY_UNCONFIRMED",
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "bbox": [
+        0.57638,
+        0.334566,
+        0.100988,
+        0.29164
+      ],
+      "status": "REVIEW",
+      "quality": {
+        "basis": "native_luma_pixels_sharpness_at_max_640_side",
+        "reasons": [],
+        "contrast": 115.0,
+        "reliable": true,
+        "sharpness": 208.416,
+        "brightness": 140.522,
+        "dark_fraction": 0.0,
+        "saturated_fraction": 0.0
+      },
+      "reason": [
+        "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH",
+        "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+        "WELD_WINDOW_UNLOCATED"
+      ],
+      "nickel": {
+        "status": "UNKNOWN",
+        "bbox": null,
+        "reason": [
+          "INSUFFICIENT_PIXELS_FOR_LOCAL_SEARCH"
+        ]
+      },
+      "weld": {
+        "status": "REVIEW",
+        "good_count": 0,
+        "bad_count": 0,
+        "unknown_count": 7,
+        "reason": [
+          "SEVEN_SLOT_CALIBRATION_NOT_VERIFIED",
+          "WELD_WINDOW_UNLOCATED"
+        ],
+        "slots7": [
+          {
+            "index": 1,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 2,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 3,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 4,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 5,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 6,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          },
+          {
+            "index": 7,
+            "status": "UNKNOWN",
+            "bbox": null,
+            "features": {},
+            "quality": {
+              "reasons": [
+                "WELD_WINDOW_UNLOCATED"
+              ],
+              "reliable": false
+            },
+            "reason": [
+              "WEAK_REFERENCE_ONLY"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "engine_source_sha256": "239c756bdbbc444a9368d85506b418cb567cba5c875fb8a88de54b6b6258e774",
+  "replay_engine_source_sha256": "edfab0c46f813be3e59e4fbfcb7339b3f9747767ae68980a02827e7b2772764e",
+  "replay_version_note": "2026-11-18 owner requested rotation, suspected occlusion and incomplete-view handling; capture-time engine/result above remain unchanged; replays use the separately reviewed engine digest",
+  "ground_truth": {
+    "busbar_count": null,
+    "nickel": "unverified",
+    "seven_slots": "unverified"
+  },
+  "limitations": [
+    "Single frozen current-scene frame, not a live public stream or an independent test set",
+    "Detected count is an algorithm output, not manual count truth",
+    "Unknown nickel/slots must remain REVIEW; no weld-strength conclusion"
+  ]
+}

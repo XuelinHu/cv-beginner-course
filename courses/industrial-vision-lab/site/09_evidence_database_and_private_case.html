@@ -1,0 +1,95 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>09｜保存证据、数据库与私有样本 · 工业视觉入门实验室</title><style>
+:root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#edf2f7;color:#172b42;font-family:system-ui,'Microsoft YaHei',sans-serif;font-size:18px;line-height:1.7}main{max-width:1120px;margin:auto;background:white;padding:32px 44px;min-height:100vh}h1{font-size:34px;line-height:1.3;color:#123b68}h2{font-size:26px;margin-top:34px}h3{font-size:22px}a{color:#064f9e;text-underline-offset:3px}pre{padding:18px;background:#eff4f9;border:1px solid #b9c8d8;border-radius:8px;overflow:auto;font-size:16px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}code{font-family:Consolas,monospace}p code,li code{background:#edf2f8;padding:2px 5px;border-radius:3px}img{max-width:100%;height:auto}table{border-collapse:collapse;display:block;overflow:auto;width:100%}td,th{padding:10px 12px;border:1px solid #adbed0;text-align:left}th{background:#e9f1fa}nav{display:flex;gap:16px;flex-wrap:wrap;border-bottom:1px solid #b4c4d8;padding-bottom:16px;margin-bottom:24px}.lesson-note{padding:14px 18px;background:#fff5d3;border:1px solid #c6a344;border-radius:8px}.cell{margin:22px 0}.output{margin:12px 0}.stream{background:#f3f7f3;border-color:#b9ccb9}.error{background:#fff0f0;border:1px solid #c44}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}.card{border:1px solid #adbed0;border-radius:9px;padding:17px;display:block;text-decoration:none;background:#f6f9fd}.card strong{display:block;font-size:21px}footer{margin-top:40px;border-top:1px solid #adbed0;padding-top:18px;font-size:16px;color:#3e566e}select{max-width:100%;padding:6px}blockquote{border-left:4px solid #b68a25;padding:4px 18px;background:#fff7df}@media(max-width:700px){main{padding:22px 17px}h1{font-size:29px}pre{font-size:14px}body{font-size:18px}}
+</style></head><body><main><nav><a href="index.html">课程目录</a><a href="data-sources.html">素材与许可</a><a href="execution_report.json">执行记录</a><a href="08_seven_slots_and_unknown.html">上一课</a><a href="10_live_blade_busbar_inspection.html">下一课</a></nav><p class="lesson-note">本页由已执行的 Jupyter 笔记本导出。代码可以复制回笔记本修改后重跑。黄色表示需复核，不代表检测合格。</p>
+<section class="cell"><h1 id="09%EF%BD%9C%E4%BF%9D%E5%AD%98%E8%AF%81%E6%8D%AE%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E7%A7%81%E6%9C%89%E6%A0%B7%E6%9C%AC">09&#65372;&#20445;&#23384;&#35777;&#25454;&#12289;&#25968;&#25454;&#24211;&#19982;&#31169;&#26377;&#26679;&#26412;<a class="anchor-link" href="#09%EF%BD%9C%E4%BF%9D%E5%AD%98%E8%AF%81%E6%8D%AE%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E7%A7%81%E6%9C%89%E6%A0%B7%E6%9C%AC">&#182;</a></h1><p>目标：将原始图摘要、参数、质量、结果、原因一起保存，并避免重复写入同一事件。用 SQLite 演示本地存储，不需要数据库服务器或口令。现场系统可以再对接 PostgreSQL/MySQL 和 MES，但不能把“放进待同步表”显示成“MES 已接收”。</p>
+<p>下方记录明确为教学规则输入，来源是公开照片；不伪装成实时检测器结果。数据库文件被 Git 忽略，执行笔记本不会连接任何远程系统。</p>
+</section>
+<section class="cell"><pre class="input"><code>from pathlib import Path
+import sys, json
+ROOT = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;lab_utils.py&quot;).is_file())
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from IPython.display import display, HTML
+import lab_utils as lab
+print(&quot;OpenCV&quot;, cv2.__version__, &quot;| NumPy&quot;, np.__version__)</code></pre>
+<pre class="output stream">OpenCV 4.12.0 | NumPy 2.2.6
+</pre>
+</section>
+<section class="cell"><pre class="input"><code>source = lab.case_row(&quot;weld_good&quot;)
+image = lab.load_case(&quot;weld_good&quot;)
+quality = lab.image_quality(image)
+result = lab.seven_slot_verdict([&quot;OK&quot;] * 5 + [&quot;NG&quot;] * 2)
+result[&quot;basis&quot;] = &quot;synthetic_rule_input_not_visual_inference&quot;
+recipe = {&quot;name&quot;: &quot;teaching-rule-v1&quot;, &quot;required_good&quot;: 5, &quot;total_slots&quot;: 7,
+          &quot;unknown_policy&quot;: &quot;REVIEW&quot;, &quot;lighting_actual&quot;: &quot;unknown&quot;}
+database = lab.OUTPUT / &quot;teaching_inspections.sqlite3&quot;
+connection = lab.create_database(database)
+event_key = &quot;teaching-v1:&quot; + source[&quot;sha256&quot;] + &quot;:5-of-7-synthetic-rule&quot;
+record_id, inserted = lab.save_inspection(connection, event_key=event_key,
+    source_id=source[&quot;id&quot;], source_sha256=source[&quot;sha256&quot;], evidence_path=source[&quot;file&quot;],
+    result=result, recipe=recipe, quality=quality)
+same_id, inserted_twice = lab.save_inspection(connection, event_key=event_key,
+    source_id=source[&quot;id&quot;], source_sha256=source[&quot;sha256&quot;], evidence_path=source[&quot;file&quot;],
+    result=result, recipe=recipe, quality=quality)
+assert record_id == same_id and inserted_twice is False
+print(&quot;记录 ID&quot;, record_id, &quot;首次新增&quot;, inserted, &quot;重复提交新增&quot;, inserted_twice)</code></pre>
+<pre class="output stream">记录 ID 1 首次新增 False 重复提交新增 False
+</pre>
+</section>
+<section class="cell"><h2 id="1.-%E7%BB%93%E6%9E%9C%E8%A1%A8%E4%B8%8E%E5%BE%85%E5%90%8C%E6%AD%A5%E8%A1%A8%E5%9C%A8%E5%90%8C%E4%B8%80%E4%BA%8B%E5%8A%A1%E4%B8%AD%E5%86%99%E5%85%A5">1. &#32467;&#26524;&#34920;&#19982;&#24453;&#21516;&#27493;&#34920;&#22312;&#21516;&#19968;&#20107;&#21153;&#20013;&#20889;&#20837;<a class="anchor-link" href="#1.-%E7%BB%93%E6%9E%9C%E8%A1%A8%E4%B8%8E%E5%BE%85%E5%90%8C%E6%AD%A5%E8%A1%A8%E5%9C%A8%E5%90%8C%E4%B8%80%E4%BA%8B%E5%8A%A1%E4%B8%AD%E5%86%99%E5%85%A5">&#182;</a></h2><p>本地结果和 outbox 一起提交，减少“结果已存但待发送事件丢失”的情况。发送服务需要用 <code>event_key</code> 做幂等、确认服务端回执后才改 <code>synced</code>；网络失败可以重试。这里没有 MES 地址，也不模拟成功回执。</p>
+<p>实际实时视频的 <code>event_key</code> 应包含采集会话和帧/工件标识，不能只用图像摘要，否则两次合法检测可能被误合并。</p>
+</section>
+<section class="cell"><pre class="input"><code>print(&quot;检测结果&quot;, connection.execute(&quot;SELECT id,source_id,status,observed FROM inspections&quot;).fetchall())
+print(&quot;真实同步状态&quot;, connection.execute(&quot;SELECT inspection_id,state,attempts FROM sync_outbox&quot;).fetchall())
+assert connection.execute(&quot;SELECT state FROM sync_outbox WHERE inspection_id=?&quot;, (record_id,)).fetchone()[0] == &quot;pending&quot;
+connection.close()
+public_record = {&quot;source&quot;: source[&quot;id&quot;], &quot;source_sha256&quot;: source[&quot;sha256&quot;],
+                 &quot;quality&quot;: quality, &quot;recipe&quot;: recipe, &quot;result&quot;: result,
+                 &quot;sync&quot;: {&quot;state&quot;: &quot;pending&quot;, &quot;remote_ack&quot;: None}}
+(lab.OUTPUT / &quot;teaching_inspection.json&quot;).write_text(json.dumps(public_record, ensure_ascii=False, indent=2), encoding=&quot;utf-8&quot;)
+display(public_record)</code></pre>
+<pre class="output stream">检测结果 [(1, &#x27;weld_good&#x27;, &#x27;OK&#x27;, 1)]
+真实同步状态 [(1, &#x27;pending&#x27;, 0)]
+</pre>
+<pre class="output">{&#x27;source&#x27;: &#x27;weld_good&#x27;,
+ &#x27;source_sha256&#x27;: &#x27;a57d4e8615c3c87e0cd6b522fd84a21e4e39e55265907b8cd49589a7a4160f1b&#x27;,
+ &#x27;quality&#x27;: {&#x27;brightness&#x27;: 48.829,
+  &#x27;sharpness&#x27;: 207.265,
+  &#x27;dark_ratio&#x27;: 0.33159,
+  &#x27;overexposed_ratio&#x27;: 0.00843,
+  &#x27;width&#x27;: 640,
+  &#x27;height&#x27;: 640},
+ &#x27;recipe&#x27;: {&#x27;name&#x27;: &#x27;teaching-rule-v1&#x27;,
+  &#x27;required_good&#x27;: 5,
+  &#x27;total_slots&#x27;: 7,
+  &#x27;unknown_policy&#x27;: &#x27;REVIEW&#x27;,
+  &#x27;lighting_actual&#x27;: &#x27;unknown&#x27;},
+ &#x27;result&#x27;: {&#x27;good_count&#x27;: 5,
+  &#x27;required_good&#x27;: 5,
+  &#x27;total_slots&#x27;: 7,
+  &#x27;slots&#x27;: [&#x27;OK&#x27;, &#x27;OK&#x27;, &#x27;OK&#x27;, &#x27;OK&#x27;, &#x27;OK&#x27;, &#x27;NG&#x27;, &#x27;NG&#x27;],
+  &#x27;status&#x27;: &#x27;OK&#x27;,
+  &#x27;reason&#x27;: &#x27;七格外观中5格符合已确认标准&#x27;,
+  &#x27;basis&#x27;: &#x27;synthetic_rule_input_not_visual_inference&#x27;},
+ &#x27;sync&#x27;: {&#x27;state&#x27;: &#x27;pending&#x27;, &#x27;remote_ack&#x27;: None}}</pre>
+</section>
+<section class="cell"><h2 id="2.-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E7%A7%81%E6%9C%89%E5%88%80%E7%89%87%E7%94%B5%E6%B1%A0%E6%A0%B7%E6%9C%AC">2. &#26412;&#22320;&#23548;&#20837;&#31169;&#26377;&#20992;&#29255;&#30005;&#27744;&#26679;&#26412;<a class="anchor-link" href="#2.-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E7%A7%81%E6%9C%89%E5%88%80%E7%89%87%E7%94%B5%E6%B1%A0%E6%A0%B7%E6%9C%AC">&#182;</a></h2><p>默认课程从不读取 <code>data/private</code>，公开网页只包含上述许可明确的公开照片。需要练现场九块汇流排时，在终端显式导入自己的图片，例如：</p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">run</span> <span class="n">-n</span> <span class="n">pyg</span> <span class="n">python</span> <span class="n">scripts</span><span class="p">/</span><span class="n">import_private</span><span class="p">.</span><span class="n">py</span> <span class="s2">&quot;D:\your-private-folder\battery.jpg&quot;</span> <span class="p">-</span><span class="n">-expected-count</span> <span class="n">9</span>
+</pre></div>
+<p>这里的 9 必须来自人工确认，不是算法成绩。导入器把像素重新编码成 PNG、去掉原 EXIF，把 SHA256 和人工数量保存在 <code>data/private</code>；七格真值仍为未知。该目录和 <code>outputs/private</code> 均被 Git 忽略。请在私有笔记本另行处理，不把私人输出写回公开教材。</p>
+<p>实时采集还需要真实摄像头服务，不能用轮播照片冒充。采集线程只保留最新帧；检测线程处理完成后再取新帧；图像、检测框和 frame_id 原子切换。设备不支持对焦/曝光回读时，数据库字段保留空值。</p>
+</section>
+<section class="cell"><pre class="input"><code># 不读取私有目录；只确认默认数据入口确实是公开清单。
+assert all(not row[&quot;file&quot;].startswith(&quot;data/private/&quot;) for row in lab.manifest()[&quot;files&quot;])
+print(&quot;默认课程不会导出私有像素；真实相机、MES 和七格视觉识别尚需各自现场验收。&quot;)</code></pre>
+<pre class="output stream">默认课程不会导出私有像素；真实相机、MES 和七格视觉识别尚需各自现场验收。
+</pre>
+</section>
+<section class="cell"><h2 id="%E6%9C%80%E5%90%8E%E7%9A%84%E5%A4%8D%E7%8E%B0%E6%A3%80%E6%9F%A5">&#26368;&#21518;&#30340;&#22797;&#29616;&#26816;&#26597;<a class="anchor-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E5%A4%8D%E7%8E%B0%E6%A3%80%E6%9F%A5">&#182;</a></h2><p>重新执行本课，同一事件不应重复插入；换成新的会话事件应正常新增。打开 <code>outputs/public/teaching_inspection.json</code>，检查结果理由、来源摘要和 pending 状态。完成课程表示掌握一套可运行的图像与数据流程，不等于工业产品已达到任何准确率要求。</p>
+</section>
+<section class="cell"><h2 id="%E6%9D%A5%E6%BA%90%E4%B8%8E%E7%BB%83%E4%B9%A0%E8%BE%B9%E7%95%8C">&#26469;&#28304;&#19982;&#32451;&#20064;&#36793;&#30028;<a class="anchor-link" href="#%E6%9D%A5%E6%BA%90%E4%B8%8E%E7%BB%83%E4%B9%A0%E8%BE%B9%E7%95%8C">&#182;</a></h2><p>公开焊缝：sukmaadhiwijaya / rikkarth，固定提交 <code>8b80d1afe88c0b946500a498cbdb9d7a1eda5533</code>，数据卡声明 CC0-1.0；工业表面：Kolektor Group / ViCoS，CC BY-NC-SA 4.0；分散零件：Tung1213，CC BY-SA 3.0；重叠零件：Technologyfelix，CC BY-SA 4.0。相关照片和派生图保留原许可及署名。</p>
+<p>完整来源、原许可页、下载路径及 SHA256 见 <a href="data-sources.html">DATA_SOURCES.md</a> 和 <a href="source_manifest.json">source_manifest.json</a>。本课是非商业教学。灰度、二值、叠框及扰动均为原照片的派生图，七格合成图另有醒目标记。它们不等于新增独立验收数据，也不证明电池焊接准确率或机械强度。</p>
+</section><footer>非商业教学 · 公开素材保留原许可；现场实拍仅按用户授权用于本项目教程，权利归原权利人。教材执行成功不等于产品通过工业验收；未知应待复核。所有图表与交互选图可离线查看。</footer></main></body></html>

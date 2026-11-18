@@ -1,0 +1,159 @@
+{
+  "independent_validation": false,
+  "cases": [
+    {
+      "case": "原始实拍裁切",
+      "derived_from_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+      "observed": 9,
+      "status": "REVIEW",
+      "geometry": {
+        "partial_candidates": 0,
+        "occlusion_suspected": 2,
+        "blocked_candidates": 2,
+        "rotated_candidates": 4,
+        "hidden_object_count": null,
+        "total_physical_count_verified": false,
+        "policy": "unclear_or_incomplete_is_review_no_hidden_pixel_completion",
+        "unresolved_region_count": 0,
+        "unresolved_regions": [],
+        "unresolved_basis": "unassigned_low_chroma_pixels_may_include_background",
+        "scene_action": "仅统计可见候选，完全隐藏的数量未知"
+      },
+      "counts": {
+        "busbars": 9,
+        "nickel_present": 0,
+        "nickel_missing": 0,
+        "nickel_unknown": 9,
+        "ok": 0,
+        "ng": 0,
+        "review": 9
+      }
+    },
+    {
+      "case": "派生：旋转23°，扩画布防裁边",
+      "derived_from_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+      "observed": 7,
+      "status": "REVIEW",
+      "geometry": {
+        "partial_candidates": 0,
+        "occlusion_suspected": 1,
+        "blocked_candidates": 1,
+        "rotated_candidates": 7,
+        "hidden_object_count": null,
+        "total_physical_count_verified": false,
+        "policy": "unclear_or_incomplete_is_review_no_hidden_pixel_completion",
+        "unresolved_region_count": 1,
+        "unresolved_regions": [
+          [
+            0.30625,
+            0.4278,
+            0.4075,
+            0.403509
+          ]
+        ],
+        "unresolved_basis": "unassigned_low_chroma_pixels_may_include_background",
+        "scene_action": "有未分离的金属候选区域，数量不完整；拉开工件、移开遮挡后补拍"
+      },
+      "counts": {
+        "busbars": 7,
+        "nickel_present": 0,
+        "nickel_missing": 0,
+        "nickel_unknown": 7,
+        "ok": 0,
+        "ng": 0,
+        "review": 7
+      }
+    },
+    {
+      "case": "派生：黑色遮挡块，未修补像素",
+      "derived_from_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+      "observed": 8,
+      "status": "REVIEW",
+      "geometry": {
+        "partial_candidates": 0,
+        "occlusion_suspected": 1,
+        "blocked_candidates": 1,
+        "rotated_candidates": 4,
+        "hidden_object_count": null,
+        "total_physical_count_verified": false,
+        "policy": "unclear_or_incomplete_is_review_no_hidden_pixel_completion",
+        "unresolved_region_count": 1,
+        "unresolved_regions": [
+          [
+            0.05,
+            0.119516,
+            0.1875,
+            0.358548
+          ]
+        ],
+        "unresolved_basis": "unassigned_low_chroma_pixels_may_include_background",
+        "scene_action": "有未分离的金属候选区域，数量不完整；拉开工件、移开遮挡后补拍"
+      },
+      "counts": {
+        "busbars": 8,
+        "nickel_present": 0,
+        "nickel_missing": 0,
+        "nickel_unknown": 8,
+        "ok": 0,
+        "ng": 0,
+        "review": 8
+      }
+    },
+    {
+      "case": "派生：右侧裁边，仅保留80%视野",
+      "derived_from_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+      "observed": 8,
+      "status": "REVIEW",
+      "geometry": {
+        "partial_candidates": 1,
+        "occlusion_suspected": 2,
+        "blocked_candidates": 3,
+        "rotated_candidates": 2,
+        "hidden_object_count": null,
+        "total_physical_count_verified": false,
+        "policy": "unclear_or_incomplete_is_review_no_hidden_pixel_completion",
+        "unresolved_region_count": 0,
+        "unresolved_regions": [],
+        "unresolved_basis": "unassigned_low_chroma_pixels_may_include_background",
+        "scene_action": "仅统计可见候选，完全隐藏的数量未知"
+      },
+      "counts": {
+        "busbars": 8,
+        "nickel_present": 0,
+        "nickel_missing": 0,
+        "nickel_unknown": 8,
+        "ok": 0,
+        "ng": 0,
+        "review": 8
+      }
+    },
+    {
+      "case": "派生：完全遮住视野，隐藏数量未知",
+      "derived_from_sha256": "0f0ae046b4dc2239348fbefb692b3e2326488ed5bf4fbabb14d14d778cd40707",
+      "observed": 0,
+      "status": "REVIEW",
+      "geometry": {
+        "partial_candidates": 0,
+        "occlusion_suspected": 0,
+        "blocked_candidates": 0,
+        "rotated_candidates": 0,
+        "hidden_object_count": null,
+        "total_physical_count_verified": false,
+        "policy": "unclear_or_incomplete_is_review_no_hidden_pixel_completion",
+        "unresolved_region_count": 0,
+        "unresolved_regions": [],
+        "unresolved_basis": "unassigned_low_chroma_pixels_may_include_background",
+        "scene_action": "仅统计可见候选，完全隐藏的数量未知"
+      },
+      "counts": {
+        "busbars": 0,
+        "nickel_present": 0,
+        "nickel_missing": 0,
+        "nickel_unknown": 0,
+        "ok": 0,
+        "ng": 0,
+        "review": 0
+      }
+    }
+  ]
+}

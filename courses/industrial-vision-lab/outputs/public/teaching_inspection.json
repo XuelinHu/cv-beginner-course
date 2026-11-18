@@ -1,0 +1,40 @@
+{
+  "source": "weld_good",
+  "source_sha256": "a57d4e8615c3c87e0cd6b522fd84a21e4e39e55265907b8cd49589a7a4160f1b",
+  "quality": {
+    "brightness": 48.829,
+    "sharpness": 207.265,
+    "dark_ratio": 0.33159,
+    "overexposed_ratio": 0.00843,
+    "width": 640,
+    "height": 640
+  },
+  "recipe": {
+    "name": "teaching-rule-v1",
+    "required_good": 5,
+    "total_slots": 7,
+    "unknown_policy": "REVIEW",
+    "lighting_actual": "unknown"
+  },
+  "result": {
+    "good_count": 5,
+    "required_good": 5,
+    "total_slots": 7,
+    "slots": [
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "OK",
+      "NG",
+      "NG"
+    ],
+    "status": "OK",
+    "reason": "七格外观中5格符合已确认标准",
+    "basis": "synthetic_rule_input_not_visual_inference"
+  },
+  "sync": {
+    "state": "pending",
+    "remote_ack": null
+  }
+}

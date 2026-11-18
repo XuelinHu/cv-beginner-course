@@ -1,0 +1,14 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.env
+.env.*
+!.env.example
+data/cache/
+data/private/
+outputs/private/
+site-private/
+*.sqlite3
+*.sqlite3-*
+runtime/
+

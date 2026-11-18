@@ -24,6 +24,7 @@
 |真实工业缺陷|[19](../notebooks/19_industrial_defect_classification.ipynb)|VOC标注、分组划分、逐层全部通道、卷积/池化手算、双头损失和独立评价|
 |真实手指手势|[20](../notebooks/20_hand_gesture_real.ipynb)|21点坐标、ROI逆变换、预训练内部张量、672维向量与逐帧规则手势|
 |真实人体动作|[21](../notebooks/21_human_pose_real.ipynb)|17/33点映射、输出头等价计算、并行热图/mask、膝关节时间序列|
+|工业视觉综合实践|[工业视觉入门实验室](../courses/industrial-vision-lab/README.md)|暗场照明、传统图像处理、多目标计数、汇流排与七格焊接外观检查、遮挡/摆歪拒判、证据留存|
 
 ## 建议教学节奏
 

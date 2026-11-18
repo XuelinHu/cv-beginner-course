@@ -1,0 +1,10 @@
+numpy>=1.24,<3
+opencv-python>=4.8,<5
+matplotlib>=3.7,<4
+nbformat>=5.9,<6
+nbclient>=0.9,<1
+nbconvert>=7.10,<8
+ipykernel>=6,<8
+jupyter-client>=8,<9
+jupyterlab>=4,<5
+
